@@ -1,0 +1,59 @@
+import express from "express";
+import { createServer } from "http";
+import { Server, Socket } from "socket.io";
+import cors from "cors";
+
+
+const app = express();
+app.set("port", process.env.PORT || 3000);
+
+app.use(cors());
+
+const http = createServer(app);
+// set up socket.io and bind it to our
+// http server.
+const io = new Server(http, { cors: { origin: '*' } });
+// const io = new Server(http);
+
+import { routes } from "./app/app"
+import { server } from "./app/server"
+
+import 'reflect-metadata';
+import { createConnection } from "typeorm";
+import { User } from "./entities/User";
+
+createConnection({
+  "type": "postgres",
+  "host": "localhost",
+  "port": 5432,
+  "username": "admin",
+  "password": "password",
+  "database": "postgres",
+  "synchronize": true,
+  "logging": false,
+  "entities": [
+    __dirname + "/entities/**/*.ts"
+  ],
+  "migrations": [
+    "./migration/**/*.ts"
+  ],
+  "subscribers": [
+    "./subscriber/**/*.ts"
+  ]
+}).then(async connection => {
+  let userRepo = connection.manager.getRepository(User);
+  let U = await userRepo.find({ Username: 'TestUser' });
+  if (U.length == 0) {
+    let user = new User();
+    user.Username = 'TestUser';
+    user.Password = 'TestPassword';
+    user.Email = null;
+    await userRepo.save(user).catch((err) => console.log(err));
+  }
+  routes(app);
+  server(io, connection);
+}).catch(error => console.log(error))
+
+const web_server = http.listen(3000, function () {
+  console.log("listening on *:3000");
+});
