@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Message } from 'src/app/models/Message';
-import { RoomHistoryServiceService } from 'src/app/services/room-history-service/room-history-service.service';
 import { RoomManagerService } from 'src/app/services/room-manager/room-manager.service';
 import { SocketManagerService } from 'src/app/services/socket-manager/socket-manager.service';
 
@@ -13,26 +12,32 @@ import { SocketManagerService } from 'src/app/services/socket-manager/socket-man
 export class ChatWindowComponent implements OnInit, OnDestroy {
 
 
-  currentRoomId: string | null = null;
+  // currentRoomId: string | null = null;
 
   subscribed: { [key: string]: boolean } = {};
 
-  constructor(private activeRoute: ActivatedRoute, private roomMan: RoomManagerService, private router: Router, private historyService : RoomHistoryServiceService) { }
+  constructor(private activeRoute: ActivatedRoute, private roomMan: RoomManagerService, private router: Router) { }
   ngOnDestroy(): void {
-    this.historyService.messages = [];
+    // this.historyService.messages = [];
   }
 
   ngOnInit(): void { }
 
+  get currentRoomId() : string | null {
+    return this.activeRoute.snapshot.params['id'];
+  }
+
   get messages(): Array<Message> {
-    return this.historyService.messages;
+    let id = this.currentRoomId;
+    let currRoom = this.roomMan.rooms.find((room) => room.id == id);
+    if (currRoom != undefined) {console.log("Message history", currRoom.history)}
+    return (currRoom == undefined) ? [] : currRoom.history;
   }
 
   sendMessage(mVal: string) {
     if (mVal == '') { return }
     let messageHist = document.getElementById('messageHist');
     messageHist?.scrollTo(0, messageHist.scrollHeight);
-    // this.messages.push(message);
-    this.historyService.sendMessage(mVal,this.activeRoute.snapshot.params['id']);
+    this.roomMan.sendMessage(mVal, this.currentRoomId)
   }
 }
