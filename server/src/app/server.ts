@@ -1,23 +1,33 @@
-import { userInfo } from "os";
 import { Server, Socket } from "socket.io";
 import { Connection } from "typeorm";
-import { v4 as uuidv4 } from 'uuid';
 import { User } from "../entities/User";
+import { RoomSocket } from "./room-socket";
+import { MessageSocket } from "./message-socket";
 
-
-let currentRooms: Array<{id: string, name: string}> = [];
 
 var server = (io: Server, connection: Connection) => {
-    io.on('connection', (socket: Socket) => {
 
+    // const ws = new WhiteBoardSocket(io);
+    const rs = new RoomSocket(io); // setting up functionality of rooms
+    const ms = new MessageSocket(io, rs); // setting up functionality of messages
+
+    io.on('connection', (socket: Socket) => { // user connects
 
         console.log("User with id " + socket.id + " joined")
+        
 
-        socket.on("message", ({ msg, id }: { msg: string; id: string }) => {
-            console.log(`Recieved message: ${msg}`);
+/*  =======================================================================================================================================================================  */
+/*  ===============================================================  Chat Room Management  ================================================================================  */
+/*  =======================================================================================================================================================================  */
 
-            io.emit("echo-message", { msg: `Echoed message: ${msg}`, id });
-        });
+        rs.setupEvents(socket); // making listeners for recieving room events
+        ms.setupEvents(socket); // making listeners for recieving chat message events
+
+
+/*  =======================================================================================================================================================================  */
+/*  =================================================================  Account Management  ================================================================================  */
+/*  =======================================================================================================================================================================  */
+
 
         socket.on('account-created', async (acc) => {
             let userRepo = connection.getRepository(User);
@@ -27,39 +37,15 @@ var server = (io: Server, connection: Connection) => {
             user.Email = null;
             await userRepo.save(user).then(() => { console.log("User saved to database") }).catch((err) => console.log(err));
             console.log(`Account created with Username: ${acc.username} and Password: ${acc.password}`);
-            socket.on('login', async (account) => {
-                let accUser = await userRepo.find({ Username: account.username });
-                // if (accUser != null && accUser[0].Password == account.password) {
-
-                // }
-            });
         });
 
-        socket.on('get-room-list', () => {
-            socket.emit('room-list-update', currentRooms)
-        })
-
-        socket.on('createRoom', () => {
-            const id = uuidv4(); // generated new ID for room
-
-            currentRooms.push({id, name: 'name'});
-            console.log(`Room created with id ${id}`);
-            socket.on(id, (msg: string) => {
-                console.log(msg);
-                io.emit(id + 'msg', { id: uuidv4(), sentBy: 'Server', message: `Message from ${id} -> ${msg}` })
-            })
-            io.emit("room-list-update", currentRooms);
-        })
-
-        socket.on('delete-room', (id: string) => {
-            if (!currentRooms.find((room) => room.id == id)) {
-                console.log(`Room with ID: ${id} does not exist`);
-                return;
+        socket.on('login', async (account) => {
+            let userRepo = connection.getRepository(User);
+            let accUser = await userRepo.find({ Username: account.username });
+            if (accUser != null && accUser[0].Password == account.password) {
+                socket.emit('successfully-logged-in');
             }
-            io.emit("room-list-update", currentRooms);
-
-            socket.leave(id);
-        })
+        });
 
         socket.on('clear-users', async () => {
             let userRepo = connection.getRepository(User);
@@ -69,6 +55,12 @@ var server = (io: Server, connection: Connection) => {
             let Users = await userRepo.find();
             Users.forEach((user) => { console.log(`User: ${user.Username}`); });
         })
+
+
+/*  =======================================================================================================================================================================  */
+/*  ==================================================================  Socket Management  ================================================================================  */
+/*  =======================================================================================================================================================================  */
+
 
         socket.on('disconnect', async (reason) => {
             console.log(`User with id ${socket.id} has disconnected`);
