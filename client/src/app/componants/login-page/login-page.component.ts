@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AccountManagerService } from 'src/app/services/account-manager/account-manager.service';
 import { SocketManagerService } from 'src/app/services/socket-manager/socket-manager.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { SocketManagerService } from 'src/app/services/socket-manager/socket-man
 })
 export class LoginPageComponent implements OnInit {
 
-  constructor(private socketMan: SocketManagerService) { }
+  constructor(private socketMan: SocketManagerService, private accountMan : AccountManagerService) { }
 
   login(uName: string, pWord: string) {
     let account = { username: uName, password: pWord };

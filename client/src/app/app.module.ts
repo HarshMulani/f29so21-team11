@@ -12,6 +12,7 @@ import { ChatScreenLayoutComponent } from './componants/chat-screen-layout/chat-
 import { ChatWindowComponent } from './componants/chat-window/chat-window.component';
 import { LoginPageComponent } from './componants/login-page/login-page.component';
 import { RoomManagerService } from './services/room-manager/room-manager.service';
+import { AccountManagerService } from './services/account-manager/account-manager.service';
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} }
 
 @NgModule({
@@ -28,7 +29,7 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} }
     AppRoutingModule,
     SocketIoModule.forRoot(config)
   ],
-  providers: [SocketManagerService, RoomManagerService],
+  providers: [SocketManagerService, RoomManagerService, AccountManagerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
