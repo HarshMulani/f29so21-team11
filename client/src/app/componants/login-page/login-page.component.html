@@ -1,6 +1,7 @@
 <p>login-page works!</p>
 <input #username>
 <input #password>
-<button (click)='login(username.value, password.value)'>Login</button>
-<button (click)='signup(username.value, password.value)'>Signup</button>
+<input #email>
+<button (click)='login(username.value, password.value, email.value)'>Login</button>
+<button (click)='signup(username.value, password.value, email.value)'>Signup</button>
 <button (click)="deleteUsers()">clear users</button>
