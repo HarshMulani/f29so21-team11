@@ -13,6 +13,7 @@ import { ChatWindowComponent } from './componants/chat-window/chat-window.compon
 import { LoginPageComponent } from './componants/login-page/login-page.component';
 import { RoomManagerService } from './services/room-manager/room-manager.service';
 import { AccountManagerService } from './services/account-manager/account-manager.service';
+import { WhiteboardComponent } from './componants/whiteboard/whiteboard.component';
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} }
 
 @NgModule({
@@ -22,7 +23,8 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} }
     HomePageComponent,
     ChatScreenLayoutComponent,
     ChatWindowComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    WhiteboardComponent
   ],
   imports: [
     BrowserModule,
