@@ -14,7 +14,7 @@ export class RoomSocket extends crudtemplate<Room> {
     }
 
     emitUpdate() {
-        this.io.emit('room-list-update', this.currentRooms) // emits all rooms to users listening
+        this.io.emit(`${this.name}-list-update`, this.currentRooms) // emits all rooms to users listening
     }
 
     makeItem() {
