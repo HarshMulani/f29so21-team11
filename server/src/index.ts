@@ -2,7 +2,7 @@ import express from "express";
 import { createServer } from "http";
 import { Server, Socket } from "socket.io";
 import cors from "cors";
-
+import { v4 as uuidv4 } from 'uuid';
 
 const app = express();
 app.set("port", process.env.PORT || 3000);
@@ -45,9 +45,10 @@ createConnection({
   let U = await userRepo.find({ Username: 'TestUser' });
   if (U.length == 0) {
     let user = new User();
+    user.ID = uuidv4();
     user.Username = 'TestUser';
     user.Password = 'TestPassword';
-    user.Email = null;
+    user.Email = 'Test';
     await userRepo.save(user).catch((err) => console.log(err));
   }
   routes(app);
