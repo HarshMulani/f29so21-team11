@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountManagerService } from 'src/app/services/account-manager/account-manager.service';
-import { SocketManagerService } from 'src/app/services/socket-manager/socket-manager.service';
 
 @Component({
   selector: 'app-login-page',
@@ -9,20 +8,18 @@ import { SocketManagerService } from 'src/app/services/socket-manager/socket-man
 })
 export class LoginPageComponent implements OnInit {
 
-  constructor(private socketMan: SocketManagerService, private accountMan : AccountManagerService) { }
+  constructor(private accountMan : AccountManagerService) { }
 
-  login(uName: string, pWord: string) {
-    let account = { username: uName, password: pWord };
-    this.socketMan.emitEvent('login', account);
+  login(uName: string, pWord: string, email: string) {
+    this.accountMan.login(uName, pWord, email);
   }
 
-  signup(uName: string, pWord: string) {
-    let account = { username: uName, password: pWord };
-    this.socketMan.emitEvent('account-created', account);
+  signup(uName: string, pWord: string, email: string) {
+    this.accountMan.signup(uName, pWord, email)
   }
 
   deleteUsers() {
-    this.socketMan.emitEvent('clear-users', null);
+    this.accountMan.deleteUsers();
   }
 
   ngOnInit(): void {
