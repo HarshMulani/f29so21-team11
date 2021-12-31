@@ -4,5 +4,6 @@
 export enum EventTypes {
     Room = 'room',
     Message = 'message',
-    User = 'user'
+    User = 'user',
+    Whiteboard = 'whiteboard'
 }
