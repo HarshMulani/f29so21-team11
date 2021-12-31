@@ -14,6 +14,7 @@ import { LoginPageComponent } from './componants/login-page/login-page.component
 import { RoomManagerService } from './services/room-manager/room-manager.service';
 import { AccountManagerService } from './services/account-manager/account-manager.service';
 import { WhiteboardComponent } from './componants/whiteboard/whiteboard.component';
+import { GroupRoomComponent } from './componants/group-room/group-room.component';
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} }
 
 @NgModule({
@@ -24,7 +25,8 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} }
     ChatScreenLayoutComponent,
     ChatWindowComponent,
     LoginPageComponent,
-    WhiteboardComponent
+    WhiteboardComponent,
+    GroupRoomComponent
   ],
   imports: [
     BrowserModule,
