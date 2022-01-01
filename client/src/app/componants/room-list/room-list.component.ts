@@ -29,18 +29,13 @@ export class RoomListComponent implements OnInit {
 
   selectRoom(id: string) {
     this.router.navigate([id], { relativeTo: this.activeRoute });
-    this.socketMan.emitEvent('get-room-list', null);
-    // this.roomMan.listenToRoom(id);
-    console.log(`Listening to messages for room with id : ${id}`)
+    // this.socketMan.emitEvent('get-room-list', null);
+    this.roomMan.listenToRoom(id);
+    // console.log(`Listening to messages for room with id : ${id}`)
+    let subscribedRoom = this.roomMan.subscribedRooms.find((room) => room.id == id);
+    if (subscribedRoom != undefined) return
+    this.roomMan.subscribedRooms.push({id: id, val: true});
     this.socketMan.emitEvent('update-message', id);
-    this.socketMan.subscribeToEvent(`message-update`, (msg : Message) => {
-      let roomId = id;
-      let currRoom = this.roomMan.rooms.find((room) => room.id == roomId);
-      console.log(`Recieving message for room with id: ${roomId}`);
-      // currRoom?.history.push(msg);
-      currRoom?.history.push(msg);
-
-    });
   }
 
   ngOnInit(): void {
