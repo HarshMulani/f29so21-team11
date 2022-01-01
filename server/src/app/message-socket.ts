@@ -18,7 +18,7 @@ export class MessageSocket extends crudtemplate<Message> {
     emitUpdate({socket, id}) { // Updates list of messages
         socket.on(id, (msg: Message) => {
             this.makeItem(msg); // Creates new message 
-            this.io.emit(`${this.name}-update`, msg) // emitting new message
+            this.io.emit(`${this.name}-update-${id}`, msg) // emitting new message
         })
     }
 
