@@ -10,6 +10,8 @@ export class RoomManagerService {
 
   rooms: Array<Room> = [];
 
+  subscribedRooms: Array<{id: string, val: boolean}> = []
+
   constructor(private socketMan: SocketManagerService) {  }
 
   createRoom() {
@@ -17,7 +19,7 @@ export class RoomManagerService {
   }
 
   subscribeToRoom() {
-    this.socketMan.subscribeToEvent('room-list-update', (rooms) => {this.rooms = rooms;})
+    this.socketMan.subscribeToEvent('room-list-update', (rooms) => {this.rooms = rooms; console.log(this.rooms)})
     this.socketMan.emitEvent('get-all-room', null);
   }
 
@@ -28,10 +30,12 @@ export class RoomManagerService {
     this.socketMan.emitEvent(id, message);
   }
 
-  listenToRoom(id:string) {
-    this.socketMan.subscribeToEvent(`message-update`, (msg : Message) => {
+  listenToRoom(id: string) {
+    console.log("subscribing to room")
+    this.socketMan.subscribeToEvent(`message-update-${id}`, (msg : Message) => {
       let currRoom = this.rooms.find((room) => room.id == id);
       console.log(`Recieving message for room with id: ${id}`);
+      if (currRoom?.history.find((message) => message == msg)) return
       currRoom?.history.push(msg);
     });
   }
