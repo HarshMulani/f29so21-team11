@@ -19,7 +19,7 @@ export class RoomSocket extends crudtemplate<Room> {
 
     makeItem() {
         super.makeItem(/* repository, payload */); // adding item to database from abstract class
-        this.currentRooms.push({id: uuidv4(), name: 'name', history: []}); // default of a new room created
+        this.currentRooms.push({id: uuidv4(), type: `${this.name}`, name: 'name', history: []}); // default of a new room created
     }
 
     itemExists(id: string) : boolean {
