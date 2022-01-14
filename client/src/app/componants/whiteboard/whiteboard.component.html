@@ -1,1 +1,7 @@
-<p>whiteboard works!</p>
+<div id="grid" style="overflow-x: hidden; display: grid; gap: 10px; grid-template-columns: [a] 1fr [b] 1fr [c] 1fr [d] 1fr [e] 1fr [f] 1fr [g] 1fr [h] 1fr [i] 1fr [j] 1fr [k];
+         grid-template-rows: [a] auto [b] auto [c];">
+  <canvas id="Canvas" style="grid-column: 1 / 7; grid-row: 1 / 2; border: 5px solid rgb(73, 211, 245);">
+  </canvas>
+  <app-chat-window style="grid-column: 7 / 10; grid-row: 1 / 2; width: auto; height: auto;">
+  </app-chat-window>
+</div>
