@@ -15,6 +15,8 @@ import { RoomManagerService } from './services/room-manager/room-manager.service
 import { AccountManagerService } from './services/account-manager/account-manager.service';
 import { WhiteboardComponent } from './componants/whiteboard/whiteboard.component';
 import { GroupRoomComponent } from './componants/group-room/group-room.component';
+import { GroupManagerService } from './services/group-manager/group-manager.service';
+import { WhiteboardManagerService } from './services/whiteboard-manager/whiteboard-manager.service';
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} }
 
 @NgModule({
@@ -33,7 +35,7 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} }
     AppRoutingModule,
     SocketIoModule.forRoot(config)
   ],
-  providers: [SocketManagerService, RoomManagerService, AccountManagerService],
+  providers: [SocketManagerService, RoomManagerService, AccountManagerService, GroupManagerService, WhiteboardManagerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
