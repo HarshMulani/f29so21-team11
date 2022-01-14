@@ -30,7 +30,6 @@ export class ChatWindowComponent implements OnInit, OnDestroy {
   get messages(): Array<Message> {
     let id = this.currentRoomId;
     let currRoom = this.roomMan.rooms.find((room) => room.id == id);
-    if (currRoom != undefined) {console.log("Message history", currRoom.history)}
     return (currRoom == undefined) ? [] : currRoom.history;
   }
 
