@@ -2,6 +2,7 @@ import { templateSourceUrl, ThrowStmt } from '@angular/compiler';
 import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { windowWhen } from 'rxjs';
+import { Color } from 'src/app/models/Color';
 import { WhiteBoardAction } from 'src/app/models/WhiteBoardAction';
 import { WhiteBoardRoom } from 'src/app/models/WhiteBoardRoom';
 import { GroupManagerService } from 'src/app/services/group-manager/group-manager.service';
@@ -84,8 +85,8 @@ export class WhiteboardComponent implements OnInit, AfterViewInit, OnDestroy {
             roomId: this.currentRoomId!,
             x: this.mouse.x * (2560 / this.canvas!.width),
             y: (this.mouse.y - this.mouse.scrollTop) * (1440 / this.canvas!.height),
-            size: 50,
-            color: {r: 'ff', g: '00', b: 'ff'}
+            size: this.getSize(),
+            color: this.getColors()
           };
           
           this.groupMan.emitDraw(actions);
@@ -95,5 +96,20 @@ export class WhiteboardComponent implements OnInit, AfterViewInit, OnDestroy {
       this.mouse.drag = false;
       this.groupMan.shareCanvas(this.currentRoomId);
     }
-  }  
+  }
+
+  getSize() : number {
+    let elem = document.getElementById('drawSize') as HTMLInputElement
+    return parseInt(elem.value)
+  }
+  
+  getColors() : Color {
+    let elem = document.getElementById('colorPick') as HTMLInputElement
+    let col = elem.value
+    let rCol = col.slice(1, 3);
+    let gCol = col.slice(3, 5);
+    let bCol = col.slice(5, 7);
+
+    return {r: rCol, g: gCol, b: bCol}
+  }
 }
