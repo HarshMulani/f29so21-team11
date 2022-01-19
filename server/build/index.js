@@ -32,6 +32,7 @@ const typeorm_1 = require("typeorm");
 const User_1 = require("./entities/User");
 (0, typeorm_1.createConnection)({
     "type": "postgres",
+    "url": process.env.DBURL,
     "host": "ec2-52-209-134-160.eu-west-1.compute.amazonaws.com",
     "port": 5432,
     "username": "esrukslydhjkkj",
