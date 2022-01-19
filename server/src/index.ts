@@ -3,11 +3,13 @@ import { createServer } from "http";
 import { Server, Socket } from "socket.io";
 import cors from "cors";
 import { v4 as uuidv4 } from 'uuid';
+import { resolve } from "path";
 
 const app = express();
-app.set("port", process.env.PORT || 3000);
+// app.set("port", process.env.PORT || 3000);
 
 app.use(cors());
+app.use(express.static(resolve('./client/dist')))
 
 const http = createServer(app);
 // set up socket.io and bind it to our
@@ -24,22 +26,26 @@ import { User } from "./entities/User";
 
 createConnection({
   "type": "postgres",
-  "host": "localhost",
+  "url": process.env.DBURL,
+  "host": "ec2-52-209-134-160.eu-west-1.compute.amazonaws.com",
   "port": 5432,
-  "username": "admin",
-  "password": "password",
-  "database": "postgres",
+  "username": "esrukslydhjkkj",
+  "password": "d110f5da1d18386f5a6c2f22ab6893bc58dfca07f5817f9c5c8ff018c805a942",
+  "database": "defadgioqb5462",
   "synchronize": true,
   "logging": false,
   "entities": [
-    __dirname + "/entities/**/*.ts"
+    __dirname + "/entities/**/*.js"
   ],
   "migrations": [
-    "./migration/**/*.ts"
+    "./migration/**/*.js"
   ],
   "subscribers": [
-    "./subscriber/**/*.ts"
-  ]
+    "./subscriber/**/*.js"
+  ],
+  extra: {
+    ssl: { rejectUnauthorized: false } 
+  }
 }).then(async connection => {
   let userRepo = connection.manager.getRepository(User);
   let U = await userRepo.find({ Username: 'TestUser' });
@@ -55,6 +61,9 @@ createConnection({
   server(io, connection);
 }).catch(error => console.log(error))
 
-const web_server = http.listen(3000, function () {
-  console.log("listening on *:3000");
-});
+// const web_server = http.listen(3000, function () {
+//   console.log("listening on *:3000");
+// });
+
+const port_num = http.listen(process.env.PORT || 3000)
+app.listen(port_num)

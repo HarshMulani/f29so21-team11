@@ -3,9 +3,12 @@
   "version": "0.0.1",
   "description": "server initialised with create-express-typescript-application.",
   "main": "src/index.ts",
+  "engines": {
+    "node": "14.x"
+  },
   "scripts": {
     "build": "tsc",
-    "start": "node ./build/src/index.js",
+    "start": "node ./build/index.js",
     "dev": "ts-node ./src/index.ts",
     "dev:nodemon": "nodemon -w src -e ts,json -x ts-node ./src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -35,6 +38,7 @@
     "mysql": "^2.18.1",
     "pg": "^8.7.1",
     "reflect-metadata": "^0.1.13",
+    "socket.io": "^4.4.1",
     "typeorm": "^0.2.41",
     "uuid": "^8.3.2"
   }
