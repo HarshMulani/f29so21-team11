@@ -3,6 +3,7 @@ import { createServer } from "http";
 import { Server, Socket } from "socket.io";
 import cors from "cors";
 import { v4 as uuidv4 } from 'uuid';
+import * as path from "path";
 
 const app = express();
 // app.set("port", process.env.PORT || 3000);
@@ -22,7 +23,6 @@ import { server } from "./app/server"
 import 'reflect-metadata';
 import { createConnection } from "typeorm";
 import { User } from "./entities/User";
-import path from "path";
 
 createConnection({
   "type": "postgres",
