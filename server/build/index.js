@@ -48,7 +48,10 @@ const User_1 = require("./entities/User");
     ],
     "subscribers": [
         "./subscriber/**/*.js"
-    ]
+    ],
+    extra: {
+        ssl: true
+    }
 }).then((connection) => __awaiter(void 0, void 0, void 0, function* () {
     let userRepo = connection.manager.getRepository(User_1.User);
     let U = yield userRepo.find({ Username: 'TestUser' });

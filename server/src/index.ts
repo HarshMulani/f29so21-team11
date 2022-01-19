@@ -40,7 +40,10 @@ createConnection({
   ],
   "subscribers": [
     "./subscriber/**/*.js"
-  ]
+  ],
+  extra: {
+    ssl: true
+  }
 }).then(async connection => {
   let userRepo = connection.manager.getRepository(User);
   let U = await userRepo.find({ Username: 'TestUser' });
