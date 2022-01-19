@@ -50,7 +50,7 @@ const User_1 = require("./entities/User");
         "./subscriber/**/*.js"
     ],
     extra: {
-        ssl: true
+        ssl: { rejectUnauthorized: false }
     }
 }).then((connection) => __awaiter(void 0, void 0, void 0, function* () {
     let userRepo = connection.manager.getRepository(User_1.User);

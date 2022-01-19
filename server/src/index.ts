@@ -42,7 +42,7 @@ createConnection({
     "./subscriber/**/*.js"
   ],
   extra: {
-    ssl: true
+    ssl: { rejectUnauthorized: false } 
   }
 }).then(async connection => {
   let userRepo = connection.manager.getRepository(User);
