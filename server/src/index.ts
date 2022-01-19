@@ -3,13 +3,13 @@ import { createServer } from "http";
 import { Server, Socket } from "socket.io";
 import cors from "cors";
 import { v4 as uuidv4 } from 'uuid';
-import * as path from "path";
+import { resolve } from "path";
 
 const app = express();
 // app.set("port", process.env.PORT || 3000);
 
 app.use(cors());
-app.use(express.static(path.resolve('/client/dist')))
+app.use(express.static(resolve('./client/dist')))
 
 const http = createServer(app);
 // set up socket.io and bind it to our
