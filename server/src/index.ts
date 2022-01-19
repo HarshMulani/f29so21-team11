@@ -5,7 +5,7 @@ import cors from "cors";
 import { v4 as uuidv4 } from 'uuid';
 
 const app = express();
-app.set("port", process.env.PORT || 3000);
+// app.set("port", process.env.PORT || 3000);
 
 app.use(cors());
 
@@ -55,6 +55,6 @@ createConnection({
   server(io, connection);
 }).catch(error => console.log(error))
 
-const web_server = http.listen(3000, function () {
-  console.log("listening on *:3000");
-});
+// const web_server = http.listen(3000, function () {
+//   console.log("listening on *:3000");
+// });
