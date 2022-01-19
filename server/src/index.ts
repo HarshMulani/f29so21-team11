@@ -24,11 +24,11 @@ import { User } from "./entities/User";
 
 createConnection({
   "type": "postgres",
-  "host": "localhost",
+  "host": "ec2-52-209-134-160.eu-west-1.compute.amazonaws.com",
   "port": 5432,
-  "username": "admin",
-  "password": "password",
-  "database": "postgres",
+  "username": "esrukslydhjkkj",
+  "password": "d110f5da1d18386f5a6c2f22ab6893bc58dfca07f5817f9c5c8ff018c805a942",
+  "database": "defadgioqb5462",
   "synchronize": true,
   "logging": false,
   "entities": [
