@@ -9,7 +9,7 @@
     },
     "scripts": {
         "build": "tsc -p ./server",
-        "start": "node ./server/build/index.js"
+        "start": "node ./server/build/index.js && ng serve ./client"
     },
     "keywords": [
         "express",
