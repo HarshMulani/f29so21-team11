@@ -4,7 +4,7 @@ import * as path from "path";
 var routes = (app: Express) => {
 
     app.get("/", (req, res) => {
-        res.send("message");
+        res.sendFile(path.resolve('/client/src/index.html'))
     });
 }
 
