@@ -21,7 +21,7 @@ const path_1 = require("path");
 const app = (0, express_1.default)();
 // app.set("port", process.env.PORT || 3000);
 app.use((0, cors_1.default)());
-app.use(express_1.default.static((0, path_1.resolve)('./client/dist')));
+app.use(express_1.default.static((0, path_1.resolve)("./client/dist/f29so-Project")));
 const http = (0, http_1.createServer)(app);
 // set up socket.io and bind it to our
 // http server.

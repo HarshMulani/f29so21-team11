@@ -4,12 +4,8 @@ import { resolve } from "path";
 
 var routes = (app: Express) => {
 
-    app.get("", (req, res) => {
-        res.sendFile(resolve('./client/src/index.html'))
-    });
-
-    app.get("/", (req, res) => {
-        res.sendFile(resolve('./client/src/index.html'))
+    app.get("/*", (req, res) => {
+        res.sendFile("index.html", {root: resolve("./client/dist/f29so-Project") })
     });
 }
 
