@@ -10,7 +10,7 @@ import { GroupRoomComponent } from './componants/group-room/group-room.component
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'home',
     component: HomePageComponent,
   },
   {
@@ -29,7 +29,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: '',
+    redirectTo: 'home',
   }
 ];
 
