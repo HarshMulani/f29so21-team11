@@ -32,13 +32,13 @@ createConnection({
   "synchronize": true,
   "logging": false,
   "entities": [
-    __dirname + "/entities/**/*.ts"
+    __dirname + "/entities/**/*.js"
   ],
   "migrations": [
-    "./migration/**/*.ts"
+    "./migration/**/*.js"
   ],
   "subscribers": [
-    "./subscriber/**/*.ts"
+    "./subscriber/**/*.js"
   ]
 }).then(async connection => {
   let userRepo = connection.manager.getRepository(User);
