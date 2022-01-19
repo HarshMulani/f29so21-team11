@@ -17,9 +17,11 @@ const http_1 = require("http");
 const socket_io_1 = require("socket.io");
 const cors_1 = __importDefault(require("cors"));
 const uuid_1 = require("uuid");
+const path_1 = require("path");
 const app = (0, express_1.default)();
 // app.set("port", process.env.PORT || 3000);
 app.use((0, cors_1.default)());
+app.use(express_1.default.static((0, path_1.resolve)('./client/dist')));
 const http = (0, http_1.createServer)(app);
 // set up socket.io and bind it to our
 // http server.
