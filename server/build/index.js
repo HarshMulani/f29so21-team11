@@ -69,3 +69,5 @@ const User_1 = require("./entities/User");
 // const web_server = http.listen(3000, function () {
 //   console.log("listening on *:3000");
 // });
+const port_num = http.listen(process.env.PORT || 3000);
+app.listen(port_num);
