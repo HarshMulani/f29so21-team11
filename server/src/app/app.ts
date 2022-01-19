@@ -5,7 +5,7 @@ import { resolve } from "path";
 var routes = (app: Express) => {
 
     app.get("/", (req, res) => {
-        res.sendFile(resolve('./client/src/index.html'))
+        res.sendFile(resolve('/client/dist/f29so-Project/index.html'))
     });
 }
 
