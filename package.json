@@ -4,6 +4,7 @@
     "description": "server initialised with create-express-typescript-application.",
     "main": "src/index.ts",
     "engines": {
+        "npm": "6.x",
         "node": "14.x"
     },
     "scripts": {
