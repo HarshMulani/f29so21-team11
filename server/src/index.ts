@@ -8,6 +8,7 @@ const app = express();
 // app.set("port", process.env.PORT || 3000);
 
 app.use(cors());
+app.use(express.static(path.resolve('/client/dist')))
 
 const http = createServer(app);
 // set up socket.io and bind it to our
@@ -21,6 +22,7 @@ import { server } from "./app/server"
 import 'reflect-metadata';
 import { createConnection } from "typeorm";
 import { User } from "./entities/User";
+import path from "path";
 
 createConnection({
   "type": "postgres",
