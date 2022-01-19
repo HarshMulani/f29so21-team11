@@ -4,7 +4,11 @@ import { resolve } from "path";
 
 var routes = (app: Express) => {
 
-    app.get("*", (req, res) => {
+    app.get("", (req, res) => {
+        res.sendFile(resolve('./client/src/index.html'))
+    });
+
+    app.get("/", (req, res) => {
         res.sendFile(resolve('./client/src/index.html'))
     });
 }
