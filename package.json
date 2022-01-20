@@ -9,8 +9,7 @@
     },
     "scripts": {
         "build": "tsc -p ./server",
-        "start": "node ./server/build/index.js",
-        "heroku-postbuild": "ng build ./client --prod"
+        "start": "node ./server/build/index.js && ng build ./client --prod"
     },
     "keywords": [
         "express",
