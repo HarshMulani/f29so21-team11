@@ -21,7 +21,7 @@ import { WhiteboardManagerService } from './services/whiteboard-manager/whiteboa
 // const config: SocketIoConfig = { url: 'https://f29so-project.herokuapp.com:3000', options: {} }
 
 let hostname = window.location.hostname;
-let url = ( hostname === 'localhost' ) ? `${window.location.protocol}//${hostname}:8080` : undefined;
+let url = ( hostname === 'localhost' ) ? `${window.location.protocol}//${hostname}:3000` : undefined;
 const config: SocketIoConfig = { url: url!, options: {} };
 
 @NgModule({
