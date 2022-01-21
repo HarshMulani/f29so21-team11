@@ -14,7 +14,7 @@ app.use(express.static(resolve("./client/dist/f29so-Project")))
 const http = createServer(app);
 // set up socket.io and bind it to our
 // http server.
-const io = new Server(http, { cors: { origin: ' http://localhost:3000' } });
+const io = new Server(http, { cors: { origin: ' http://localhost:3000', methods: ["GET", "POST"] } });
 // const io = new Server(http);
 
 import { routes } from "./app/app"
