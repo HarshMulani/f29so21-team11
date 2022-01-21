@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { resolve } from "path";
 
 const app = express();
-// app.set("port", process.env.PORT || 3000);
+app.set("port", process.env.PORT || 3000);
 
 app.use(cors());
 app.use(express.static(resolve("./client/dist/f29so-Project")))

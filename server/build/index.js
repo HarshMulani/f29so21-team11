@@ -19,7 +19,7 @@ const cors_1 = __importDefault(require("cors"));
 const uuid_1 = require("uuid");
 const path_1 = require("path");
 const app = (0, express_1.default)();
-// app.set("port", process.env.PORT || 3000);
+app.set("port", process.env.PORT || 3000);
 app.use((0, cors_1.default)());
 app.use(express_1.default.static((0, path_1.resolve)("./client/dist/f29so-Project")));
 const http = (0, http_1.createServer)(app);
