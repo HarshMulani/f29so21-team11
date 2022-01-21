@@ -14,7 +14,7 @@ app.use(express.static(resolve("./client/dist/f29so-Project")))
 const http = createServer(app);
 // set up socket.io and bind it to our
 // http server.
-const io = new Server(http, { cors: { origin: '*' } });
+const io = new Server(http, { cors: { origin: 'https://f29so-project.herokuapp.com' } });
 // const io = new Server(http);
 
 import { routes } from "./app/app"
