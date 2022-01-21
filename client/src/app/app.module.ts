@@ -18,11 +18,11 @@ import { GroupRoomComponent } from './componants/group-room/group-room.component
 import { GroupManagerService } from './services/group-manager/group-manager.service';
 import { WhiteboardManagerService } from './services/whiteboard-manager/whiteboard-manager.service';
 // const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} }
-// const config: SocketIoConfig = { url: 'https://f29so-project.herokuapp.com:3000', options: {} }
+const config: SocketIoConfig = { url: 'https://f29so-project.herokuapp.com:3000', options: {} }
 
-let hostname = window.location.hostname;
-let url = ( hostname === 'localhost' ) ? `${window.location.protocol}//${hostname}:3000` : undefined;
-const config: SocketIoConfig = { url: url!, options: {} };
+// let hostname = window.location.hostname;
+// let url = ( hostname === 'localhost' ) ? `${window.location.protocol}//${hostname}:3000` : undefined;
+// const config: SocketIoConfig = { url: url!, options: {} };
 
 @NgModule({
   declarations: [
