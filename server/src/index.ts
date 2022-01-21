@@ -9,7 +9,7 @@ const app = express();
 app.set("port", process.env.PORT || 3000);
 
 app.use(cors());
-app.use(express.static(resolve("./client/dist")))
+app.use(express.static(resolve("./client/dist/f29so-Project")))
 
 const http = createServer(app);
 // set up socket.io and bind it to our
