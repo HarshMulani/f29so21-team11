@@ -9,5 +9,4 @@ var EventTypes;
     EventTypes["Message"] = "message";
     EventTypes["User"] = "user";
     EventTypes["Group"] = "group";
-    EventTypes["Image"] = "image";
 })(EventTypes = exports.EventTypes || (exports.EventTypes = {}));
