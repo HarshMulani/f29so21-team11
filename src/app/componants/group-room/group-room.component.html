@@ -1,0 +1,10 @@
+<p>group-room works!</p>
+<button (click)="createRoom()">Create Room</button>
+<ul *ngFor="let r of rooms">
+  <li>
+    <div (click)="joinRoom(r.id)">
+      {{r.id}}
+    </div>
+  </li>
+</ul>
+<router-outlet></router-outlet>

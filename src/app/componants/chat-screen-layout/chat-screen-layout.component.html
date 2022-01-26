@@ -1,0 +1,13 @@
+<div style="
+    display: grid;
+    grid-template-columns: 30% 1fr;
+    grid-auto-flow: column;
+    height: 80vh;
+  ">
+  <div style="background-color: green; overflow:scroll; overflow-x: hidden;">
+    <app-room-list></app-room-list>
+  </div>
+  <div style="background-color: yellow">
+    <router-outlet></router-outlet>
+  </div>
+</div>
