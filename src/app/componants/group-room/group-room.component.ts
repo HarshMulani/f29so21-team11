@@ -23,6 +23,8 @@ export class GroupRoomComponent implements OnInit {
   }
 
   joinRoom(id: string) {
+    this.groupMan.canvas?.remove();
+
     this.router.navigate([id], { relativeTo: this.activeRoute });
 
     this.socketMan.emitEvent('get-all-group', null);

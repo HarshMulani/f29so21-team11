@@ -49,6 +49,7 @@ export class WhiteboardComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   setCanvas() {
+    this.groupMan.canvas = document.getElementById('Canvas') as HTMLCanvasElement;
     this.canvas.width = window.innerWidth * (3 / 5) - 20;
     this.canvas.height = this.canvas.width * (0.5625);
     
