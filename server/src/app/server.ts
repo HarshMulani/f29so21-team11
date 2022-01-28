@@ -8,9 +8,9 @@ import { GroupSockets } from "./group-socket";
 
 var server = (io: Server, connection: Connection) => {
 
-    const rs = new RoomSocket(io); // setting up functionality of rooms
-    const ms = new MessageSocket(io, rs); // setting up functionality of messages
-    const gs = new GroupSockets(io, rs); // setting up functionality of groups
+    const rs = new RoomSocket(io, connection); // setting up functionality of rooms
+    const ms = new MessageSocket(io, rs, connection); // setting up functionality of messages
+    const gs = new GroupSockets(io, rs, connection); // setting up functionality of groups
     const us = new UserSocket(io, connection); // setting up functionality of user connections
 
     io.on('connection', (socket: Socket) => { // user connects

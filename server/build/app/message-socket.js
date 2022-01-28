@@ -5,9 +5,10 @@ const crud_template_1 = require("./crud-template");
 const event_types_1 = require("./event-types");
 const uuid_1 = require("uuid");
 class MessageSocket extends crud_template_1.crudtemplate {
-    constructor(io, rs) {
+    constructor(io, rs, connection) {
         super(io, event_types_1.EventTypes.Message);
         this.roomSocket = rs;
+        this.connection = connection;
     }
     emitUpdate({ socket, id }) {
         socket.on(id, (msg) => {

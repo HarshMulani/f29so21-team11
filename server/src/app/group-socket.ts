@@ -6,15 +6,18 @@ import { WhiteBoardRoom } from "../models/WhiteboardRoom";
 import { RoomSocket } from "./room-socket";
 import { WhiteBoardAction } from "../models/WhiteBoardAction";
 import { createCanvas } from "canvas";
+import { Connection } from "typeorm";
 
 export class GroupSockets extends crudtemplate<WhiteBoardRoom> {
     
+    private connection: Connection;
     currentGroups: Array<WhiteBoardRoom> = []
     roomSocket: RoomSocket;
 
-    constructor(io: Server, rs: RoomSocket) {
+    constructor(io: Server, rs: RoomSocket, connection: Connection) {
         super(io, EventTypes.Group);
         this.roomSocket = rs;
+        this.connection = connection;
     }
 
     setupEvents(socket: Socket) {

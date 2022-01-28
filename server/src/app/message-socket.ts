@@ -4,15 +4,18 @@ import { crudtemplate } from "./crud-template";
 import { EventTypes } from "./event-types";
 import { RoomSocket } from "./room-socket";
 import { v4 as uuidv4 } from 'uuid';
+import { Connection } from "typeorm";
 
 
 export class MessageSocket extends crudtemplate<Message> {
     
+    private connection: Connection;
     private roomSocket: RoomSocket; // link to RoomSocket
 
-    constructor(io: Server, rs: RoomSocket) {
+    constructor(io: Server, rs: RoomSocket, connection : Connection) {
         super(io, EventTypes.Message);
         this.roomSocket = rs;
+        this.connection = connection;
     }
 
     emitUpdate({socket, id}) { // Updates list of messages
