@@ -14,6 +14,7 @@ export class AccountManagerService implements OnInit {
   constructor(private socketMan: SocketManagerService) { }
 
   login(uName: string, pWord: string) {
+    console.log(this.listeners)
     if (!this.listeners) {
       this.setupListeners();
       this.listeners = true;
@@ -23,6 +24,7 @@ export class AccountManagerService implements OnInit {
   }
 
   signup(uName: string, pWord: string, email: string) {
+    console.log(this.listeners)
     if (!this.listeners) {
       this.setupListeners();
       this.listeners = true;
