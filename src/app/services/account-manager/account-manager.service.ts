@@ -11,9 +11,9 @@ export class AccountManagerService implements OnInit {
 
   constructor(private socketMan: SocketManagerService) { }
 
-  login(uName: string, pWord: string, email: string) {
+  login(uName: string, pWord: string) {
     this.setupListeners();
-    let account = { username: uName, password: pWord, email: email };
+    let account = { username: uName, password: pWord};
     this.socketMan.emitEvent('user-login', account);
   }
 

@@ -41,7 +41,7 @@ export class UserSocket extends crudtemplate<UserModel> {
         return (user.length == 0) ? false : true;
     }
 
-    async accountCorrect(account : UserModel) : Promise<boolean> {
+    async accountCorrect(account : { username: string, password: string }) : Promise<boolean> {
         console.log(account)
         if (account.username == '') return false
         let userRepo = this.connection.getRepository(User);
@@ -67,7 +67,7 @@ export class UserSocket extends crudtemplate<UserModel> {
     }
 
     login(socket: Socket) {
-        socket.on(`${this.name}-login`, (account : UserModel)=> {
+        socket.on(`${this.name}-login`, (account : { username: string, password: string })=> {
             console.log('Attempting user login')
             this.accountCorrect(account).then((val) => {
                 console.log(val)

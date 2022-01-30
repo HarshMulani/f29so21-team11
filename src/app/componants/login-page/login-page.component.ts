@@ -10,8 +10,8 @@ export class LoginPageComponent implements OnInit {
 
   constructor(private accountMan : AccountManagerService) { }
 
-  login(uName: string, pWord: string, email: string) {
-    this.accountMan.login(uName, pWord, email);
+  login(uName: string, pWord: string) {
+    this.accountMan.login(uName, pWord);
   }
 
   signup(uName: string, pWord: string, email: string) {
