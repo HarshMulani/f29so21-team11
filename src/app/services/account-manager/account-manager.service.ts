@@ -7,29 +7,29 @@ import { SocketManagerService } from '../socket-manager/socket-manager.service';
 })
 export class AccountManagerService implements OnInit {
 
-  account : User | null = null;
+  account : {username: string, password: string} | null = null;
 
   listeners : boolean = false;
 
   constructor(private socketMan: SocketManagerService) { }
 
-  login(uName: string, pWord: string) {
+  login(uName: string, pWord: string, eMail: string) {
     console.log(this.listeners)
     if (!this.listeners) {
       this.setupListeners();
       this.listeners = true;
     }
-    let account = { username: uName, password: pWord};
+    let account = { username: uName, password: pWord, email: eMail };
     this.socketMan.emitEvent('user-login', account);
   }
 
-  signup(uName: string, pWord: string, email: string) {
+  signup(uName: string, pWord: string, eMail: string) {
     console.log(this.listeners)
     if (!this.listeners) {
       this.setupListeners();
       this.listeners = true;
     }
-    let account = { username: uName, password: pWord, email: email };
+    let account = { username: uName, password: pWord, email: eMail };
     this.socketMan.emitEvent('create-user', account);
   }
 

@@ -14,7 +14,8 @@
     <input #password style="grid-row: 2 / 3; grid-column: 2 / 3;">
     <input #email style="grid-row: 3 / 4; grid-column: 2 / 3;">
 
-    <button (click)='login(username.value, password.value)' style="grid-row: 1 / 2; grid-column: 3 / 4;">Login</button>
+    <button (click)='login(username.value, password.value, email.value)'
+      style="grid-row: 1 / 2; grid-column: 3 / 4;">Login</button>
     <button (click)='signup(username.value, password.value, email.value)'
       style="grid-row: 2 / 3; grid-column: 3 / 4;">Signup</button>
     <button (click)='deleteUsers()' style="grid-row: 3 / 4; grid-column: 3 / 4;">clear users</button>
