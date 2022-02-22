@@ -9,27 +9,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.User = void 0;
+exports.ChatRoom = void 0;
 const typeorm_1 = require("typeorm");
-let User = class User {
+const Message_1 = require("./Message");
+let ChatRoom = class ChatRoom {
 };
 __decorate([
-    (0, typeorm_1.Column)({ length: 40 }),
+    (0, typeorm_1.PrimaryColumn)({ length: 40 }),
     __metadata("design:type", String)
-], User.prototype, "ID", void 0);
+], ChatRoom.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.PrimaryColumn)({ length: 25 }),
+    (0, typeorm_1.Column)({ length: 10 }),
     __metadata("design:type", String)
-], User.prototype, "Username", void 0);
+], ChatRoom.prototype, "type", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ length: 100 }),
+    (0, typeorm_1.Column)({ length: 50 }),
     __metadata("design:type", String)
-], User.prototype, "Password", void 0);
+], ChatRoom.prototype, "name", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ length: 50, nullable: true, }),
-    __metadata("design:type", String)
-], User.prototype, "Email", void 0);
-User = __decorate([
+    (0, typeorm_1.OneToMany)(() => Message_1.Message, msg => msg),
+    __metadata("design:type", Array)
+], ChatRoom.prototype, "history", void 0);
+ChatRoom = __decorate([
     (0, typeorm_1.Entity)()
-], User);
-exports.User = User;
+], ChatRoom);
+exports.ChatRoom = ChatRoom;

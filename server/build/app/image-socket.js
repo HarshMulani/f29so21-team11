@@ -4,9 +4,10 @@ exports.ImageSocket = void 0;
 const crud_template_1 = require("./crud-template");
 const event_types_1 = require("./event-types");
 class ImageSocket extends crud_template_1.crudtemplate {
-    constructor(io) {
+    constructor(io, connection) {
         super(io, event_types_1.EventTypes.Image);
         this.pictures = [];
+        this.connection = connection;
     }
     setupEvents(socket) {
         super.setupEvents(socket);

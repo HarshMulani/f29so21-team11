@@ -4,6 +4,7 @@ import { RoomSocket } from "./room-socket";
 import { MessageSocket } from "./message-socket";
 import { UserSocket } from "./user-socket";
 import { GroupSockets } from "./group-socket";
+import { ImageSocket } from "./image-socket";
 
 
 var server = (io: Server, connection: Connection) => {
@@ -12,6 +13,7 @@ var server = (io: Server, connection: Connection) => {
     const ms = new MessageSocket(io, rs, connection); // setting up functionality of messages
     const gs = new GroupSockets(io, rs, connection); // setting up functionality of groups
     const us = new UserSocket(io, connection); // setting up functionality of user connections
+    const is = new ImageSocket(io, connection); // setting up functonality of image connections
 
     io.on('connection', (socket: Socket) => { // user connects
 
@@ -32,6 +34,9 @@ var server = (io: Server, connection: Connection) => {
 
         /* group socket management */
         gs.setupEvents(socket); // making listeners for recieving group events
+
+        /* image socket management */
+        is.setupEvents(socket); // making listeners for recieving image events
 
         socket.on('disconnect', async (reason) => {
             console.log(`User with id ${socket.id} has disconnected with reason: ${reason}`);

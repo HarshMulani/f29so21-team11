@@ -8,28 +8,40 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var ChatRoom_1;
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.User = void 0;
+exports.ChatRoom = void 0;
 const typeorm_1 = require("typeorm");
-let User = class User {
+let ChatRoom = ChatRoom_1 = class ChatRoom {
 };
 __decorate([
-    (0, typeorm_1.Column)({ length: 40 }),
+    (0, typeorm_1.PrimaryColumn)({ length: 40 }),
     __metadata("design:type", String)
-], User.prototype, "ID", void 0);
+], ChatRoom.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.PrimaryColumn)({ length: 25 }),
+    (0, typeorm_1.Column)({ length: 10 }),
     __metadata("design:type", String)
-], User.prototype, "Username", void 0);
+], ChatRoom.prototype, "type", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ length: 100 }),
+    (0, typeorm_1.Column)({ length: 10 }),
     __metadata("design:type", String)
-], User.prototype, "Password", void 0);
+], ChatRoom.prototype, "name", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ length: 50, nullable: true, }),
+    (0, typeorm_1.Column)({ length: 512 }),
     __metadata("design:type", String)
-], User.prototype, "Email", void 0);
-User = __decorate([
+], ChatRoom.prototype, "whiteboard", void 0);
+__decorate([
+    (0, typeorm_1.OneToOne)(() => ChatRoom_1, room => room.id),
+    (0, typeorm_1.JoinColumn)(),
+    __metadata("design:type", ChatRoom)
+], ChatRoom.prototype, "chat", void 0);
+ChatRoom = ChatRoom_1 = __decorate([
     (0, typeorm_1.Entity)()
-], User);
-exports.User = User;
+], ChatRoom);
+exports.ChatRoom = ChatRoom;
+/*
+    id: string;
+    name: string;
+    whiteboard: string;
+    chat: Room;
+*/ 

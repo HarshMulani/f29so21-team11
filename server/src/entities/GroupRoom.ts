@@ -1,4 +1,4 @@
-import { Column, Entity, OneToMany, OneToOne, PrimaryColumn } from "typeorm";
+import { Column, Entity, JoinColumn, OneToOne, PrimaryColumn } from "typeorm";
 import { Message } from "./Message";
 
 @Entity()
@@ -7,13 +7,17 @@ export class ChatRoom {
     @PrimaryColumn({ length: 40 })
     id: string;
 
-    @Column({ length: 10})
+    @Column({ length: 10 })
+    type: string;
     
+    @Column({ length: 10})
+    name: string;
 
     @Column({ length: 512})
     whiteboard: string;
 
-    @OneToOne(type => ChatRoom, room => room.id)
+    @OneToOne(() => ChatRoom, room => room.id)
+    @JoinColumn()
     chat: ChatRoom;
 
 }

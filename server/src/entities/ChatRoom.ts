@@ -13,7 +13,7 @@ export class ChatRoom {
     @Column({ length: 50})
     name: string;
 
-    @OneToMany(type => Message, messages => messages.message)
+    @OneToMany(() => Message, msg => msg)
     history: Message[];
 
 }
