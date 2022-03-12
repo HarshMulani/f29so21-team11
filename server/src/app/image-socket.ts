@@ -1,13 +1,16 @@
 import { Server, Socket } from "socket.io";
+import { Connection } from "typeorm";
 import { crudtemplate } from "./crud-template";
 import { EventTypes } from "./event-types";
 
 export class ImageSocket extends crudtemplate<any> {
 
-    pictures : Array<{id: string, uploadTime: Date, link: string}> = []
+    private connection : Connection;
+    private pictures : Array<{id: string, uploadTime: Date, link: string}> = []
 
-    constructor(io: Server) {
+    constructor(io: Server, connection: Connection) {
         super(io, EventTypes.Image)
+        this.connection = connection;
     }
 
     setupEvents(socket: Socket) {

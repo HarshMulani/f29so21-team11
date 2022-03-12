@@ -1,10 +1,12 @@
 <p>group-room works!</p>
-<button (click)="createRoom()">Create Room</button>
-<ul *ngFor="let r of rooms">
-  <li>
-    <div (click)="joinRoom(r.id)">
-      {{r.id}}
-    </div>
-  </li>
-</ul>
+<div style="overflow: scroll; overflow-x: hidden; background-color: rgb(121, 189, 228);">
+  <button (click)="createRoom()">Create Room</button>
+  <ul *ngFor="let r of rooms">
+    <li>
+      <div (click)="joinRoom(r.id)">
+        {{r.id}}
+      </div>
+    </li>
+  </ul>
+</div>
 <router-outlet></router-outlet>

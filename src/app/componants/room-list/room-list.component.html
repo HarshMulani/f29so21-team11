@@ -1,5 +1,5 @@
 <button (click)="createRoom()">Create Room</button>
-<ul *ngFor="let r of rooms" style="overflow: scroll; overflow-x: hidden;">
+<ul *ngFor="let r of rooms">
   <li>
     <div style="display: grid; grid-auto-flow: column;" (click)="selectRoom(r.id)">
       <div>Group: {{r.id}}</div>

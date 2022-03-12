@@ -3,14 +3,17 @@ import { crudtemplate } from "./crud-template";
 import { EventTypes } from "./event-types";
 import { v4 as uuidv4 } from 'uuid';
 import { Room } from "../models/Room";
+import { Connection } from "typeorm";
 
 
 export class RoomSocket extends crudtemplate<Room> {
 
+    private connection: Connection;
     public currentRooms = []; // list of current rooms on server
 
-    constructor(io: Server) {
+    constructor(io: Server, connection: Connection) {
         super(io, EventTypes.Room);
+
     }
 
     emitUpdate() {

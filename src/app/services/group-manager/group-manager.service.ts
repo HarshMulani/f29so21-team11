@@ -16,7 +16,8 @@ export class GroupManagerService {
   subscribedRooms: Array<{id: string, val: boolean}> = []
 
   tempcan : HTMLCanvasElement | null = null;
-  
+  canvas : HTMLCanvasElement | null = null;
+
   constructor(private socketMan: SocketManagerService, private activeRoute: ActivatedRoute, private roomMan: RoomManagerService) {}
 
   get currentRoomId() : string | null {

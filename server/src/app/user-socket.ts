@@ -9,7 +9,7 @@ import { v4 as uuidv4 } from 'uuid';
 export class UserSocket extends crudtemplate<UserModel> {
 
     private connection: Connection;
-    private loggedInUsers = []
+    private loggedInUsers: Array<string> = []
 
     constructor(io: Server, connection: Connection) {
         super(io, EventTypes.User)
