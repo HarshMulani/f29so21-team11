@@ -1,11 +1,12 @@
 import { Component } from "@angular/core";
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { NgForm } from "@angular/forms";
 
-@Component ({
-  templateUrl: './login.component.html'
+
+
+@Component({
+  templateUrl: "./login.component.html",
+  styleUrls: ["./login.component.css"]
 })
 export class LoginComponent {
-
 
 }
