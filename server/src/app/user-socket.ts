@@ -18,82 +18,82 @@ export class UserSocket extends crudtemplate<UserModel> {
 
     setupEvents(socket: Socket) {
         super.setupEvents(socket)
-        this.login(socket);
+        // this.login(socket);
     }
 
     emitUpdate(): void {
         
     }
 
-    async removeUser(username: string) {
-        let userRepo = this.connection.getRepository(User);
-        let userToLeave = await userRepo.findOne({ Username: username }).catch((err) => { console.log(err); });
-        if (userToLeave) {
-            await userRepo.remove(userToLeave).catch((err) => { console.log(err); });
-        }
-    }
+    // async removeUser(username: string) {
+    //     let userRepo = this.connection.getRepository(User);
+    //     let userToLeave = await userRepo.findOne({ Username: username }).catch((err) => { console.log(err); });
+    //     if (userToLeave) {
+    //         await userRepo.remove(userToLeave).catch((err) => { console.log(err); });
+    //     }
+    // }
 
-    async accountExists(username: string): Promise<boolean> {
-        if (username == '') return false
-        let userRepo = this.connection.getRepository(User);
-        let user = await userRepo.find({Username: username});
-        console.log(user, user.length == 0)
-        return (user.length == 0) ? false : true;
-    }
+    // async accountExists(username: string): Promise<boolean> {
+    //     if (username == '') return false
+    //     let userRepo = this.connection.getRepository(User);
+    //     let user = await userRepo.find({Username: username});
+    //     console.log(user, user.length == 0)
+    //     return (user.length == 0) ? false : true;
+    // }
 
-    async accountCorrect(account : UserModel) : Promise<boolean> {
-        console.log(account)
-        if (account.username == '') return false
-        let userRepo = this.connection.getRepository(User);
-        let user = await userRepo.find({Username: account.username, Password: account.password});
-        console.log(user, user.length == 0)
-        return (user.length == 0) ? false: true;
-    }
+    // async accountCorrect(account : UserModel) : Promise<boolean> {
+    //     console.log(account)
+    //     if (account.username == '') return false
+    //     let userRepo = this.connection.getRepository(User);
+    //     let user = await userRepo.find({Username: account.username, Password: account.password});
+    //     console.log(user, user.length == 0)
+    //     return (user.length == 0) ? false: true;
+    // }
 
-    async makeItem(account: UserModel): Promise<void> {
-        this.accountExists(account.username).then(async (val) => {
-            console.log(val)
-            if (!val) {
-                let userRepo = this.connection.getRepository(User);
-                let user = new User();
-                user.ID = uuidv4();
-                user.Username = account.username;
-                user.Password = account.password;
-                user.Email = account.email;
-                console.log("Creating account")
-                await userRepo.save(user).catch((err) => {console.log(err)})
-            }
-        })
-    }
+    // async makeItem(account: UserModel): Promise<void> {
+    //     this.accountExists(account.username).then(async (val) => {
+    //         console.log(val)
+    //         if (!val) {
+    //             let userRepo = this.connection.getRepository(User);
+    //             let user = new User();
+    //             user.ID = uuidv4();
+    //             user.Username = account.username;
+    //             user.Password = account.password;
+    //             user.Email = account.email;
+    //             console.log("Creating account")
+    //             await userRepo.save(user).catch((err) => {console.log(err)})
+    //         }
+    //     })
+    // }
 
-    login(socket: Socket) {
-        socket.on(`${this.name}-login`, (account : UserModel)=> {
-            console.log('Attempting user login')
-            this.accountCorrect(account).then((val) => {
-                console.log(val)
-                if (val) {
-                    console.log('Successfully logged in')
-                    socket.emit(`${this.name}-log-in`, account);
-                } else {
-                    console.log('Failed to log in')
-                    socket.emit(`${this.name}-log-in-failed`);
-                }
-            })
+    // login(socket: Socket) {
+    //     socket.on(`${this.name}-login`, (account : UserModel)=> {
+    //         console.log('Attempting user login')
+    //         this.accountCorrect(account).then((val) => {
+    //             console.log(val)
+    //             if (val) {
+    //                 console.log('Successfully logged in')
+    //                 socket.emit(`${this.name}-log-in`, account);
+    //             } else {
+    //                 console.log('Failed to log in')
+    //                 socket.emit(`${this.name}-log-in-failed`);
+    //             }
+    //         })
 
-        })
-    }
+    //     })
+    // }
 
-    delete(socket: Socket) {
-        socket.on(`delete-${this.name}`, (username: string) => {
-            this.accountExists(username).then((val) => {
-                console.log(val)
-                if (!val) {
-                    this.removeUser(username);
-                }
-            });
+    // delete(socket: Socket) {
+    //     socket.on(`delete-${this.name}`, (username: string) => {
+    //         this.accountExists(username).then((val) => {
+    //             console.log(val)
+    //             if (!val) {
+    //                 this.removeUser(username);
+    //             }
+    //         });
             
-        })
-    }
+    //     })
+    // }
 
     /*
 
