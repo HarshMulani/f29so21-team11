@@ -1,5 +1,7 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { IonicModule } from '@ionic/angular';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,8 +20,9 @@ import { GroupRoomComponent } from './componants/group-room/group-room.component
 import { GroupManagerService } from './services/group-manager/group-manager.service';
 import { WhiteboardManagerService } from './services/whiteboard-manager/whiteboard-manager.service';
 
-const config: SocketIoConfig = { url: 'https://f29so-project.herokuapp.com', options: {} }
+// const config: SocketIoConfig = { url: 'https://f29so-project.herokuapp.com', options: {} }
 
+const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} }
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,6 +37,7 @@ const config: SocketIoConfig = { url: 'https://f29so-project.herokuapp.com', opt
   imports: [
     BrowserModule,
     AppRoutingModule,
+    IonicModule,
     SocketIoModule.forRoot(config)
   ],
   providers: [SocketManagerService, RoomManagerService, AccountManagerService, GroupManagerService, WhiteboardManagerService],

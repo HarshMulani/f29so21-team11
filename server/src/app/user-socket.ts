@@ -11,9 +11,9 @@ export class UserSocket extends crudtemplate<UserModel> {
     private connection: Connection;
     private loggedInUsers: Array<string> = []
 
-    constructor(io: Server, connection: Connection) {
+    constructor(io: Server/*, connection: Connection*/) {
         super(io, EventTypes.User)
-        this.connection = connection;
+        // this.connection = connection;
     }
 
     setupEvents(socket: Socket) {

@@ -1,15 +1,45 @@
-<ul style="
-    display: grid;
-    grid-auto-flow: column;
-    padding: 1rem;
-    background-color: pink;
-    list-style: none;
-  ">
-  <li style="text-align: center;"><a href="https://arfsi09.wixsite.com/lunar">Company</a></li>
-  <li style="text-align: center;" routerLink="/">Home</li>
-  <li style="text-align: center;" routerLink="/chat">Chat</li>
-  <li style="text-align: center;" routerLink="/whiteboard">Whiteboard</li>
-  <li style="text-align: center;" routerLink="/login">Login</li>
-</ul>
+<body>
+  <div class="navigation">
+    <ul class="list">
+      <li id="1" class="item" (click)="activeLink(1)">
+        <a href="https://arfsi09.wixsite.com/lunar">
+          <span class="text">Company</span>
+          <span><img class="icon" src="https://unpkg.com/ionicons@5.5.2/dist/svg/business-outline.svg"></span>
+        </a>
+      </li>
+      <li id="2" class="item active" (click)="activeLink(2)" routerLink="logged/home">
+        <span class="text">Home</span>
+        <span>
+          <img class="icon" src="https://unpkg.com/ionicons@5.5.2/dist/svg/home-outline.svg">
+        </span>
+      </li>
+      <li id="3" class="item" (click)="activeLink(3)" routerLink="logged/chat">
+        <span class="text">Chat</span>
+        <span>
+          <img class="icon" src="https://unpkg.com/ionicons@5.5.2/dist/svg/chatbubbles-outline.svg">
+        </span>
+      </li>
+      <li id="4" class="item" (click)="activeLink(4)" routerLink="logged/whiteboard">
+        <span class="text">whiteboard</span>
+        <span>
+          <img class="icon" src="https://unpkg.com/ionicons@5.5.2/dist/svg/create-outline.svg">
+        </span>
+      </li>
+      <li id="5" class="item" (click)="activeLink(5)" routerLink="logged/login">
+        <span class="text">Login</span>
+        <span>
+          <img class="icon" src="https://unpkg.com/ionicons@5.5.2/dist/svg/log-in-outline.svg">
+        </span>
+      </li>
+      <div class="indicator"></div>
+    </ul>
+    <label class="switch">
+      <input (click)="changeMode()" type="checkbox">
+      <span class="slider round"></span>
+    </label>
+  </div>
+  <div class="spacer"> </div>
 
-<router-outlet></router-outlet>
+  <router-outlet></router-outlet>
+
+</body>

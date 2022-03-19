@@ -38,8 +38,21 @@ export class AccountManagerService implements OnInit {
   }
 
   setupListeners() {
-    this.socketMan.subscribeToEvent('user-log-in', (account) => {this.account = account; console.log(this.account, 'Successfully logged in'); alert('Successfully logged in') });
-    this.socketMan.subscribeToEvent('user-log-in-failed', () => {console.log('Failed to log in'); alert('Failed to log in, please try again')});
+    this.socketMan.subscribeToEvent('user-log-in', (account) => {
+      this.account = account; 
+      console.log(this.account, 'Successfully logged in'); 
+      alert('Successfully logged in'); 
+
+      localStorage.setItem('login-token', account.username);
+      setInterval(() => {
+        localStorage.removeItem('login-token');
+      }, 6000000)
+    });
+
+    this.socketMan.subscribeToEvent('user-log-in-failed', () => {
+      console.log('Failed to log in'); 
+      alert('Failed to log in, please try again')
+    });
   }
 
   ngOnInit(): void {

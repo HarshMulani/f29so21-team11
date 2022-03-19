@@ -15,10 +15,10 @@ const crud_template_1 = require("./crud-template");
 const User_1 = require("../entities/User");
 const uuid_1 = require("uuid");
 class UserSocket extends crud_template_1.crudtemplate {
-    constructor(io, connection) {
+    constructor(io /*, connection: Connection*/) {
         super(io, event_types_1.EventTypes.User);
         this.loggedInUsers = [];
-        this.connection = connection;
+        // this.connection = connection;
     }
     setupEvents(socket) {
         super.setupEvents(socket);

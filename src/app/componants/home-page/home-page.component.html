@@ -1,13 +1,14 @@
-<p style="background-color: pink;">home-page works!</p>
 <!-- <router-outlet></router-outlet> -->
-<div
-  style="height: 80vh; background-color: beige; overflow:scroll; overflow-x: hidden; display: grid; grid-template-columns: 1fr 502px 1fr; grid-template-rows: 50px auto;">
-  <input type="file" id="image">
-  <div style="grid-column: 2 / 3; grid-row: 2 / 3;">
+<div class="main">
+  <div>
+    <input type="file" id="image">
+    <button (click)="Upload()">Upload</button>
+  </div>
+  <div class="list">
     <ul *ngFor="let p of pictures">
-      <li style="text-align: left; position: relative; margin: 0 0 10% 0;">
+      <li class="item">
         <img src={{p.img}} style="border: 1px solid black;" />
-        <div style="background-color: grey; width: 100%; height: 100px;">
+        <div class="comment">
 
         </div>
       </li>

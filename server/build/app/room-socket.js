@@ -5,7 +5,7 @@ const crud_template_1 = require("./crud-template");
 const event_types_1 = require("./event-types");
 const uuid_1 = require("uuid");
 class RoomSocket extends crud_template_1.crudtemplate {
-    constructor(io, connection) {
+    constructor(io /*, connection: Connection*/) {
         super(io, event_types_1.EventTypes.Room);
         this.currentRooms = []; // list of current rooms on server
     }

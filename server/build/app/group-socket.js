@@ -6,11 +6,11 @@ const uuid_1 = require("uuid");
 const event_types_1 = require("./event-types");
 const canvas_1 = require("canvas");
 class GroupSockets extends crud_template_1.crudtemplate {
-    constructor(io, rs, connection) {
+    constructor(io, rs /*, connection: Connection*/) {
         super(io, event_types_1.EventTypes.Group);
         this.currentGroups = [];
         this.roomSocket = rs;
-        this.connection = connection;
+        // this.connection = connection;
     }
     setupEvents(socket) {
         super.setupEvents(socket);

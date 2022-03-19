@@ -12,6 +12,8 @@ export class RoomManagerService {
 
   subscribedRooms: Array<{id: string, val: boolean}> = []
 
+  a: any = {}
+
   constructor(private socketMan: SocketManagerService) {  }
 
   createRoom() {
@@ -30,11 +32,10 @@ export class RoomManagerService {
   }
 
   listenToRoom(id: string) {
-    this.socketMan.subscribeToEvent(`message-update-${id}`, (msg : Message) => {
+    this.a[id] = this.socketMan.subscribeToEvent(`message-update-${id}`, (msg : Message) => {
       let currRoom = this.rooms.find((room) => room.id == id);
       if (currRoom?.history.find((message) => message == msg)) return
       currRoom?.history.push(msg);
     });
   }
-
 }

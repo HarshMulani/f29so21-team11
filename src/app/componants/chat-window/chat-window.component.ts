@@ -16,7 +16,7 @@ export class ChatWindowComponent implements OnInit, OnDestroy {
 
   subscribed: { [key: string]: boolean } = {};
 
-  constructor(private activeRoute: ActivatedRoute, private roomMan: RoomManagerService, private router: Router) { }
+  constructor(private activeRoute: ActivatedRoute, private roomMan: RoomManagerService, private socketMan: SocketManagerService) { }
   ngOnDestroy(): void {
     // this.historyService.messages = [];
   }
@@ -38,5 +38,10 @@ export class ChatWindowComponent implements OnInit, OnDestroy {
     let messageHist = document.getElementById('messageHist');
     messageHist?.scrollTo(0, messageHist.scrollHeight);
     this.roomMan.sendMessage(mVal, this.currentRoomId)
+  }
+
+  unsubscribeFromRoom() {
+    this.socketMan.sock.removeListener(`message-update-${this.roomMan.a[this.currentRoomId!]}`);
+    this.roomMan.a[this.currentRoomId!] = null;
   }
 }

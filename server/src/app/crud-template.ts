@@ -43,7 +43,7 @@ export abstract class crudtemplate<T extends {id: string}> {
 
     create(socket: Socket) {
         socket.on(`create-${this.name}`, (data: T) => { // create item
-        this.makeItem(data)
+        this.makeItem(data);
         
         this.emitUpdate();
     })}

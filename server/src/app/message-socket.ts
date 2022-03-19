@@ -12,10 +12,10 @@ export class MessageSocket extends crudtemplate<Message> {
     private connection: Connection;
     private roomSocket: RoomSocket; // link to RoomSocket
 
-    constructor(io: Server, rs: RoomSocket, connection : Connection) {
+    constructor(io: Server, rs: RoomSocket/*, connection: Connection*/) {
         super(io, EventTypes.Message);
         this.roomSocket = rs;
-        this.connection = connection;
+        // this.connection = connection;
     }
 
     emitUpdate({socket, id}) { // Updates list of messages

@@ -10,26 +10,32 @@ import { GroupRoomComponent } from './componants/group-room/group-room.component
 
 const routes: Routes = [
   {
-    path: 'home',
-    component: HomePageComponent,
-  },
-  {
-    path: 'chat',
-    component: ChatScreenLayoutComponent,
-    children: [{ path: ':id', component: ChatWindowComponent, canActivate: [RoomIdExistsGuard]}],
-  },
-  {
     path: 'login',
     component: LoginPageComponent
   },
   {
-    path: 'whiteboard',
-    component: GroupRoomComponent,
-    children: [{ path: ':id', component: WhiteboardComponent, canActivate: [RoomIdExistsGuard]}],
+    path: 'logged',
+    children:[  
+    {
+      path: 'whiteboard',
+      component: GroupRoomComponent,
+      children: [{ path: ':id', component: WhiteboardComponent, canActivate: [RoomIdExistsGuard]}],
+    },
+  
+    {
+      path: 'home',
+      component: HomePageComponent,
+    },
+    {
+      path: 'chat',
+      component: ChatScreenLayoutComponent,
+      children: [{ path: ':id', component: ChatWindowComponent, canActivate: [RoomIdExistsGuard]}],
+    }
+  ]
   },
   {
     path: '**',
-    redirectTo: 'home',
+    redirectTo: 'login',
   }
 ];
 
@@ -38,3 +44,8 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+
+/*
+
+
+ */

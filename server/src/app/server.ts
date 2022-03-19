@@ -7,13 +7,13 @@ import { GroupSockets } from "./group-socket";
 import { ImageSocket } from "./image-socket";
 
 
-var server = (io: Server, connection: Connection) => {
+var server = (io: Server/*, connection: Connection*/) => {
 
-    const rs = new RoomSocket(io, connection); // setting up functionality of rooms
-    const ms = new MessageSocket(io, rs, connection); // setting up functionality of messages
-    const gs = new GroupSockets(io, rs, connection); // setting up functionality of groups
-    const us = new UserSocket(io, connection); // setting up functionality of user connections
-    const is = new ImageSocket(io, connection); // setting up functonality of image connections
+    const rs = new RoomSocket(io/*, connection*/); // setting up functionality of rooms
+    const ms = new MessageSocket(io, rs/*, connection*/); // setting up functionality of messages
+    const gs = new GroupSockets(io, rs/*, connection*/); // setting up functionality of groups
+    const us = new UserSocket(io/*, connection*/); // setting up functionality of user connections
+    const is = new ImageSocket(io/*, connection*/); // setting up functonality of image connections
 
     io.on('connection', (socket: Socket) => { // user connects
 

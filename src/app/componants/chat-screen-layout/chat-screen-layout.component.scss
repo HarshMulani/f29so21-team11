@@ -1,0 +1,21 @@
+:root {
+  --cbgc: #a8f0e6;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 30% 1fr;
+  grid-auto-flow: column;
+  height: 90vh;
+}
+
+.room-list {
+  background: rgb(33, 51, 152);
+  background: linear-gradient(180deg, rgba(33, 51, 152, 1) 0%, rgba(235, 63, 66, 1) 100%);
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+.chat {
+  background-color: var(--cbgc)
+}

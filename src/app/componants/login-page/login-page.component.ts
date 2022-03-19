@@ -4,7 +4,7 @@ import { AccountManagerService } from 'src/app/services/account-manager/account-
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
-  styleUrls: ['./login-page.component.scss']
+  styleUrls: ['./login-page.component.scss', './login-page-small.component.scss']
 })
 export class LoginPageComponent implements OnInit {
 

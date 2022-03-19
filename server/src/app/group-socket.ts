@@ -14,10 +14,10 @@ export class GroupSockets extends crudtemplate<WhiteBoardRoom> {
     private currentGroups: Array<WhiteBoardRoom> = []
     private roomSocket: RoomSocket;
 
-    constructor(io: Server, rs: RoomSocket, connection: Connection) {
+    constructor(io: Server, rs: RoomSocket/*, connection: Connection*/) {
         super(io, EventTypes.Group);
         this.roomSocket = rs;
-        this.connection = connection;
+        // this.connection = connection;
     }
 
     setupEvents(socket: Socket) {

@@ -11,7 +11,7 @@ export class RoomSocket extends crudtemplate<Room> {
     private connection: Connection;
     public currentRooms = []; // list of current rooms on server
 
-    constructor(io: Server, connection: Connection) {
+    constructor(io: Server/*, connection: Connection*/) {
         super(io, EventTypes.Room);
 
     }

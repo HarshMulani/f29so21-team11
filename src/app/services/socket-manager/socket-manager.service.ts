@@ -12,6 +12,10 @@ export class SocketManagerService {
 
   constructor(private socket: Socket) { }
 
+  get sock(): Socket {
+    return this.socket;
+  }
+
   emitEvent(name: string, payload: any) {
     this.socket.emit(name, payload);
   }

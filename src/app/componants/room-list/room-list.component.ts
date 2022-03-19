@@ -13,6 +13,8 @@ import { ChatWindowComponent } from '../chat-window/chat-window.component';
 })
 export class RoomListComponent implements OnInit {
 
+  selectedRooms: Array<Room> = [];
+
   constructor(private socketMan: SocketManagerService, private roomMan: RoomManagerService, private router: Router, private activeRoute: ActivatedRoute) { }
 
   get rooms(): Array<Room> {
@@ -40,6 +42,10 @@ export class RoomListComponent implements OnInit {
 
   ngOnInit(): void {
     this.roomMan.subscribeToRoom();
+  }
+
+  search() {
+
   }
 
 }

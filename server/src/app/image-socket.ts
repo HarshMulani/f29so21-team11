@@ -8,9 +8,9 @@ export class ImageSocket extends crudtemplate<any> {
     private connection : Connection;
     private pictures : Array<{id: string, uploadTime: Date, link: string}> = []
 
-    constructor(io: Server, connection: Connection) {
+    constructor(io: Server/*, connection: Connection*/) {
         super(io, EventTypes.Image)
-        this.connection = connection;
+        // this.connection = connection;
     }
 
     setupEvents(socket: Socket) {

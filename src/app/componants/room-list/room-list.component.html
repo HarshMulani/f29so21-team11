@@ -1,9 +1,18 @@
-<button (click)="createRoom()">Create Room</button>
-<ul *ngFor="let r of rooms">
-  <li>
-    <div style="display: grid; grid-auto-flow: column;" (click)="selectRoom(r.id)">
-      <div>Group: {{r.id}}</div>
-      <!-- <div>{{r.name}}</div> -->
+<div class="grid">
+  <div class="search">
+    <button (click)="createRoom()" class="create">Create Room</button>
+    <input type="text" class="search-box">
+    <div class="search-button" (click)="search()">
+      <p>Search</p>
     </div>
-  </li>
-</ul>
+  </div>
+  <div class="list">
+    <ul *ngFor="let r of selectedRooms">
+      <li>
+        <div style="display: grid; grid-auto-flow: column;" (click)="selectRoom(r.id)">
+          <div>Group: {{r.id}}</div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

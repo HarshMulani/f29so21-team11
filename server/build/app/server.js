@@ -15,12 +15,12 @@ const message_socket_1 = require("./message-socket");
 const user_socket_1 = require("./user-socket");
 const group_socket_1 = require("./group-socket");
 const image_socket_1 = require("./image-socket");
-var server = (io, connection) => {
-    const rs = new room_socket_1.RoomSocket(io, connection); // setting up functionality of rooms
-    const ms = new message_socket_1.MessageSocket(io, rs, connection); // setting up functionality of messages
-    const gs = new group_socket_1.GroupSockets(io, rs, connection); // setting up functionality of groups
-    const us = new user_socket_1.UserSocket(io, connection); // setting up functionality of user connections
-    const is = new image_socket_1.ImageSocket(io, connection); // setting up functonality of image connections
+var server = (io /*, connection: Connection*/) => {
+    const rs = new room_socket_1.RoomSocket(io /*, connection*/); // setting up functionality of rooms
+    const ms = new message_socket_1.MessageSocket(io, rs /*, connection*/); // setting up functionality of messages
+    const gs = new group_socket_1.GroupSockets(io, rs /*, connection*/); // setting up functionality of groups
+    const us = new user_socket_1.UserSocket(io /*, connection*/); // setting up functionality of user connections
+    const is = new image_socket_1.ImageSocket(io /*, connection*/); // setting up functonality of image connections
     io.on('connection', (socket) => {
         console.log("User with id " + socket.id + " joined");
         // socket.on('whiteboard-draw', (actions: { x: number, y: number, size: number, color: {r: string, g: string, b: string}}) => {

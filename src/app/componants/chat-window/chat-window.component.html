@@ -2,8 +2,9 @@
   <h1>
     {{ currentRoomId }}
   </h1>
+  <button (click)="unsubscribeFromRoom()"></button>
 
-  <div style="height: 90%;">
+  <div class="list" style="height: 90%;">
     <ul *ngFor="let m of messages" style="margin: 40px;">
       <li>
         <div>{{ m.id }}</div>
