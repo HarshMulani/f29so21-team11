@@ -13,12 +13,19 @@ import { ChatWindowComponent } from '../chat-window/chat-window.component';
 })
 export class RoomListComponent implements OnInit {
 
-  selectedRooms: Array<Room> = [];
-
   constructor(private socketMan: SocketManagerService, private roomMan: RoomManagerService, private router: Router, private activeRoute: ActivatedRoute) { }
 
   get rooms(): Array<Room> {
     return this.roomMan.rooms;
+  }
+
+  get selectedRooms(): Array<Room> {
+    let roomList: Array<Room> = new Array<Room>();
+    
+    let searchVal = document.getElementById('search-box') as HTMLInputElement;
+
+    this.rooms.forEach((room) => { if (room.name.includes(searchVal.value)) { roomList.push(room) } });
+    return roomList;
   }
 
   createRoom() {
