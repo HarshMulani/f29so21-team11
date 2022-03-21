@@ -56,7 +56,7 @@ export class UserSocket extends crudtemplate<UserModel> {
             if (!val) {
                 let userRepo = this.connection.getRepository(User);
                 let user = new User();
-                user.ID = uuidv4();
+                user.ID = account.id;
                 user.Username = account.username;
                 user.Password = account.password;
                 user.Email = account.email;
