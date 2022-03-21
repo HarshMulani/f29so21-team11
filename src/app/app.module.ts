@@ -41,7 +41,7 @@ const config: SocketIoConfig = { url: 'https://f29so-project.herokuapp.com', opt
     SocketIoModule.forRoot(config),
     BrowserAnimationsModule
   ],
-  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   providers: [SocketManagerService, RoomManagerService, AccountManagerService, GroupManagerService, WhiteboardManagerService],
   bootstrap: [AppComponent]
 })
