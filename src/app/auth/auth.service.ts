@@ -55,7 +55,7 @@ export class AuthService {
       const token = user;
       this.token = token;
       if (token) {
-        const expiresInDuration = 1;
+        const expiresInDuration = 1000;
         this.setAuthTimer(expiresInDuration);
         this.isAuthenticated = true;
         this.authStatusListener.next(true);
