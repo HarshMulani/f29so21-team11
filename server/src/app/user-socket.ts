@@ -16,12 +16,12 @@ export class UserSocket extends crudtemplate<UserModel> {
         this.connection = connection;
     }
 
-    setupEvents(socket: Socket) {
+    override setupEvents(socket: Socket) {
         super.setupEvents(socket)
         this.login(socket);
     }
 
-    emitUpdate(): void {
+    override emitUpdate(): void {
         
     }
 
@@ -50,7 +50,7 @@ export class UserSocket extends crudtemplate<UserModel> {
         return (user.length == 0) ? false: true;
     }
 
-    async makeItem(account: UserModel): Promise<void> {
+    override async makeItem(account: UserModel): Promise<void> {
         this.accountExists(account.username).then(async (val) => {
             console.log(val)
             if (!val) {
@@ -83,7 +83,7 @@ export class UserSocket extends crudtemplate<UserModel> {
         })
     }
 
-    delete(socket: Socket) {
+    override delete(socket: Socket) {
         socket.on(`delete-${this.name}`, (username: string) => {
             this.accountExists(username).then((val) => {
                 console.log(val)
