@@ -19,4 +19,6 @@ export class SocketManagerService {
   subscribeToEvent(name: string, func: (...args: any) => void) {
     this.socket.on(name, func);
   }
+
+  // listOfListeners
 }

@@ -3,9 +3,10 @@ import { HttpClient } from "@angular/common/http";
 import { Router } from "@angular/router";
 import { Subject } from "rxjs";
 import { authModel } from "./auth-model";
-import { UserSocket } from "server/src/app/user-socket";
+// import { UserSocket } from "server/src/app/user-socket";
 import { v4 as uuidv4 } from 'uuid';
 import { authLoginModel } from "./auth-login-model";
+import { SocketManagerService } from "../services/socket-manager/socket-manager.service";
 
 @Injectable({ providedIn: "root" })
 export class AuthService {
@@ -13,9 +14,9 @@ export class AuthService {
   private token!: string | null;
   private tokenTimer: any;
   private authStatusListener = new Subject<boolean>();
-  private usersocket!: UserSocket;
+  
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router, private socketManager: SocketManagerService) {}
 
   getToken() {
     return this.token;
@@ -30,10 +31,9 @@ export class AuthService {
   }
 
   createUser(user: string, email: string, password: string) {
-    const inputAuthModel: authModel = {id: uuidv4(), username: user, email: email, password: password };
-    this.usersocket.makeItem(inputAuthModel);
+    //this.socketManager.emitEvent(https://f29soproject.herokuapp.com/login");
     console.log(user);
-    console.log(inputAuthModel.id);
+    //console.log(inputAuthModel.id);
   }
 
   login(user: string, password: string) {
