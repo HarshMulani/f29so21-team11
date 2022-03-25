@@ -3,11 +3,11 @@
   <form (submit)="onLogin(loginForm)" #loginForm="ngForm" *ngIf="!isLoading">
     <mat-form-field>
       <input matInput name="user" ngModel type="text" placeholder="Your Username" #userNameInput="ngModel" required>
-      <mat-error *ngIf="userNameInput.invalid">That username does not exist in our database.</mat-error>
+      <mat-error *ngIf="userNameInput.invalid">Username field is empty!</mat-error>
     </mat-form-field>
     <mat-form-field>
       <input type="password" name="password" ngModel matInput placeholder="Password" #passwordInput="ngModel" required>
-      <mat-error *ngIf="passwordInput.invalid">That username/password does not exist in our database.</mat-error>
+      <mat-error *ngIf="passwordInput.invalid">Password field is empty!</mat-error>
     </mat-form-field>
     <button mat-raised-button color="accent" type="submit" *ngIf="!isLoading">Login</button>
   </form>
