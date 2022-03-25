@@ -8,7 +8,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { authLoginModel } from "./auth-login-model";
 import { authCreationModel } from "./auth-signup-model";
 import { SocketManagerService } from "../services/socket-manager/socket-manager.service";
-import { stringify } from "querystring";
+
 
 @Injectable({ providedIn: "root" })
 export class AuthService {
