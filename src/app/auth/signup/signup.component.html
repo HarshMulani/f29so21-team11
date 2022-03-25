@@ -2,8 +2,8 @@
   <mat-spinner *ngIf="isLoading"></mat-spinner>
   <form (submit)="onSignup(signupForm)" #signupForm="ngForm" *ngIf="!isLoading">
     <mat-form-field>
-      <input matInput name="Username" ngModel type="string" placeholder="Your Username" #userNameInput="ngModel" required>
-      <mat-error *ngIf="userNameInput.invalid">Please enter a valid username that is not already taken.</mat-error>
+      <input matInput name="user" ngModel type="text" placeholder="Your Username">
+      <!-- <mat-error *ngIf="userNameInput.invalid">Please enter a valid username that is not already taken.</mat-error> -->
     </mat-form-field>
     <mat-form-field>
       <input matInput name="email" ngModel type="email" placeholder="E-Mail" #emailInput="ngModel" required email>
