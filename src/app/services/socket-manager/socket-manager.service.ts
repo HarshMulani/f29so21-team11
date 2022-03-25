@@ -8,6 +8,7 @@ import { Room } from 'src/app/models/Room';
 export class SocketManagerService {
 
   rooms: Array<{ room: Room }> = [];
+  listeners: Array<any> = [];
 
 
   constructor(private socket: Socket) { }
@@ -20,5 +21,5 @@ export class SocketManagerService {
     this.socket.on(name, func);
   }
 
-  // listOfListeners
+  // TODO: Define a method to return a list of Listeners.
 }

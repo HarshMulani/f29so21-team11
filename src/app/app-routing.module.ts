@@ -7,7 +7,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { RoomIdExistsGuard } from './guards/room-id-exists/room-id-exists.guard';
 import { WhiteboardComponent } from './componants/whiteboard/whiteboard.component';
 import { GroupRoomComponent } from './componants/group-room/group-room.component';
-
+import { SignupComponent } from './auth/signup/signup.component';
 
 const routes: Routes = [
   {
@@ -21,12 +21,17 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
+    children: [{ path: ':id', component: SignupComponent, canActivate: [SignupComponent]}],
   },
   {
     path: 'whiteboard',
     component: GroupRoomComponent,
     children: [{ path: ':id', component: WhiteboardComponent, canActivate: [RoomIdExistsGuard]}],
+  },
+  {
+    path: 'sign-up',
+    component: SignupComponent,
   },
   {
     path: '**',

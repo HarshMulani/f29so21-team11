@@ -24,7 +24,7 @@ export class UserSocket extends crudtemplate<UserModel> {
     override emitUpdate(): void {
         
     }
-//jnj
+
     async removeUser(username: string) {
         let userRepo = this.connection.getRepository(User);
         let userToLeave = await userRepo.findOne({ Username: username }).catch((err) => { console.log(err); });
@@ -58,8 +58,8 @@ export class UserSocket extends crudtemplate<UserModel> {
                 let user = new User();
                 user.ID = uuidv4();
                 user.Username = account.username;
-                user.Password = account.password;
                 user.Email = account.email;
+                user.Password = account.password;
                 console.log("Creating account")
                 await userRepo.save(user).catch((err) => {console.log(err)})
             }

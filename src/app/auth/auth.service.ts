@@ -2,11 +2,13 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Router } from "@angular/router";
 import { Subject } from "rxjs";
-import { authModel } from "./auth-model";
+
 // import { UserSocket } from "server/src/app/user-socket";
 import { v4 as uuidv4 } from 'uuid';
 import { authLoginModel } from "./auth-login-model";
+import { authCreationModel } from "./auth-signup-model";
 import { SocketManagerService } from "../services/socket-manager/socket-manager.service";
+import { stringify } from "querystring";
 
 @Injectable({ providedIn: "root" })
 export class AuthService {
@@ -16,7 +18,7 @@ export class AuthService {
   private authStatusListener = new Subject<boolean>();
   
 
-  constructor(private http: HttpClient, private router: Router, private socketManager: SocketManagerService) {}
+  constructor(private socketManager: SocketManagerService, private router: Router) {}
 
   getToken() {
     return this.token;
@@ -31,33 +33,38 @@ export class AuthService {
   }
 
   createUser(user: string, email: string, password: string) {
-    //this.socketManager.emitEvent(https://f29soproject.herokuapp.com/login");
-    console.log(user);
-    //console.log(inputAuthModel.id);
+    const inputAuthData: authCreationModel = {username: user, email: email, password: password};
+    this.socketManager.emitEvent('create-user', inputAuthData);
+    console.log(inputAuthData.email);
+    this.socketManager.subscribeToEvent('create-user',
+    response => {
+      console.log(response);
+    });
   }
 
   login(user: string, password: string) {
+
     const inputLogin: authLoginModel = {username: user, password: password};
-    this.http
-      .post<{ token: string; expiresIn: number }>(
-        "https://f29so-project.herokuapp.com/login",
-        inputLogin
-      )
-      .subscribe(response => {
-        const token = response.token;
-        this.token = token;
-        if (token) {
-          const expiresInDuration = response.expiresIn;
-          this.setAuthTimer(expiresInDuration);
-          this.isAuthenticated = true;
-          this.authStatusListener.next(true);
-          const currentTime = new Date();
-          const expirationDate = new Date(currentTime.getTime() + expiresInDuration * 1000);
-          console.log(expirationDate);
-          this.saveAuthData(token, expirationDate);
-          this.router.navigate(["/"]);
-        }
-      });
+
+
+    this.socketManager.emitEvent('user-login', inputLogin);
+    console.log(inputLogin.username);
+    this.socketManager.subscribeToEvent('user-login',
+    response => {
+      const token = response.token;
+      this.token = token;
+      if (token) {
+        const expiresInDuration = response.expiresIn;
+        this.setAuthTimer(expiresInDuration);
+        this.isAuthenticated = true;
+        this.authStatusListener.next(true);
+        const currentTime = new Date();
+        const expirationDate = new Date(currentTime.getTime() + expiresInDuration * 1000);
+        console.log(expirationDate);
+        this.saveAuthData(token, expirationDate);
+        this.router.navigate(["**"]);
+      }
+    });
   }
 
   autoAuthUser() {
@@ -81,7 +88,7 @@ export class AuthService {
     this.authStatusListener.next(false);
     clearTimeout(this.tokenTimer);
     this.clearAuthData();
-    this.router.navigate(["/"]);
+    this.router.navigate(["**"]);
   }
 
   private setAuthTimer(duration: number) {

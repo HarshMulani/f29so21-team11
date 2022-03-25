@@ -15,6 +15,7 @@ import { HomePageComponent } from './componants/home-page/home-page.component';
 import { ChatScreenLayoutComponent } from './componants/chat-screen-layout/chat-screen-layout.component';
 import { ChatWindowComponent } from './componants/chat-window/chat-window.component';
 import { LoginComponent } from './auth/login/login.component';
+import { SignupComponent } from "./auth/signup/signup.component";
 import { RoomManagerService } from './services/room-manager/room-manager.service';
 import { AccountManagerService } from './services/account-manager/account-manager.service';
 import { WhiteboardComponent } from './componants/whiteboard/whiteboard.component';
@@ -23,7 +24,8 @@ import { GroupManagerService } from './services/group-manager/group-manager.serv
 import { WhiteboardManagerService } from './services/whiteboard-manager/whiteboard-manager.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-const config: SocketIoConfig = { url: 'https://f29so-project.herokuapp.com', options: {} }
+
+const config: SocketIoConfig = { url: 'https://f29soproject.herokuapp.com', options: {} }
 
 @NgModule({
   declarations: [
@@ -34,7 +36,8 @@ const config: SocketIoConfig = { url: 'https://f29so-project.herokuapp.com', opt
     ChatWindowComponent,  
     WhiteboardComponent,
     GroupRoomComponent,
-    LoginComponent
+    LoginComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
