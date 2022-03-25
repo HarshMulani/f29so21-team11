@@ -20,6 +20,7 @@ export class AuthService {
 
   constructor(private socketManager: SocketManagerService, private router: Router) {}
 
+  
   getToken() {
     return this.token;
   }
@@ -49,12 +50,12 @@ export class AuthService {
 
     this.socketManager.emitEvent('user-login', inputLogin);
     console.log(inputLogin.username);
-    this.socketManager.subscribeToEvent('user-login',
-    response => {
-      const token = response.token;
+    // this.socketManager.subscribeToEvent('user-login',
+    // response => {
+      const token = user;
       this.token = token;
       if (token) {
-        const expiresInDuration = response.expiresIn;
+        const expiresInDuration = 1;
         this.setAuthTimer(expiresInDuration);
         this.isAuthenticated = true;
         this.authStatusListener.next(true);
@@ -62,9 +63,9 @@ export class AuthService {
         const expirationDate = new Date(currentTime.getTime() + expiresInDuration * 1000);
         console.log(expirationDate);
         this.saveAuthData(token, expirationDate);
-        this.router.navigate(["**"]);
+        this.router.navigate(["/"]);
       }
-    });
+   //});
   }
 
   autoAuthUser() {
@@ -88,7 +89,7 @@ export class AuthService {
     this.authStatusListener.next(false);
     clearTimeout(this.tokenTimer);
     this.clearAuthData();
-    this.router.navigate(["**"]);
+    this.router.navigate(["/"]);
   }
 
   private setAuthTimer(duration: number) {
