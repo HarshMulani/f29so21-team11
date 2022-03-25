@@ -24,7 +24,7 @@ export class UserSocket extends crudtemplate<UserModel> {
     override emitUpdate(): void {
         
     }
-
+//jnj
     async removeUser(username: string) {
         let userRepo = this.connection.getRepository(User);
         let userToLeave = await userRepo.findOne({ Username: username }).catch((err) => { console.log(err); });
