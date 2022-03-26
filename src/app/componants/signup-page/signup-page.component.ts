@@ -2,16 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { AccountManagerService } from 'src/app/services/account-manager/account-manager.service';
 
 @Component({
-  selector: 'app-login-page',
-  templateUrl: './login-page.component.html',
-  styleUrls: ['./login-page.component.scss', './login-page-small.component.scss']
+  selector: 'app-signup-page',
+  templateUrl: './signup-page.component.html',
+  styleUrls: ['./signup-page.component.scss']
 })
-export class LoginPageComponent {
+export class SignUpPageComponent {
 
   constructor(private accountMan : AccountManagerService) { }
 
-  login(user: string, password: string) {
-    this.accountMan.login(user, password);
+  signup(user: string, email: string, password: string) {
+    this.accountMan.createUser(user, email, password);
   }
 
   deleteUsers() {
