@@ -23,6 +23,8 @@ import { GroupRoomComponent } from './componants/group-room/group-room.component
 import { GroupManagerService } from './services/group-manager/group-manager.service';
 import { WhiteboardManagerService } from './services/whiteboard-manager/whiteboard-manager.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 
 const config: SocketIoConfig = { url: 'https://f29soproject.herokuapp.com', options: {} }
@@ -44,7 +46,12 @@ const config: SocketIoConfig = { url: 'https://f29soproject.herokuapp.com', opti
     AppRoutingModule,
     SocketIoModule.forRoot(config),
     BrowserAnimationsModule,
-    FormsModule
+    FormsModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatCardModule,
+    MatButtonModule,
+    ReactiveFormsModule
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   providers: [SocketManagerService, RoomManagerService, AccountManagerService, GroupManagerService, WhiteboardManagerService],

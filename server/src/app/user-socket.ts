@@ -61,7 +61,7 @@ export class UserSocket extends crudtemplate<UserModel> {
                 user.Email = account.email;
                 user.Password = account.password;
                 console.log("Creating account")
-                await userRepo.save(user).catch((err) => {console.log(err)})
+                await userRepo.save(user).catch((err) => {console.log(err)});
             }
         })
     }
