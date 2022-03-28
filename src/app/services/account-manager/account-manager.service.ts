@@ -1,4 +1,5 @@
 import { Injectable, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { User } from 'src/app/models/User';
 import { SocketManagerService } from '../socket-manager/socket-manager.service';
 
@@ -7,19 +8,20 @@ import { SocketManagerService } from '../socket-manager/socket-manager.service';
 })
 export class AccountManagerService implements OnInit {
 
-  account : {username: string, password: string} | null = null;
+  account : User | null = null;
 
   listeners : boolean = false;
 
-  constructor(private socketMan: SocketManagerService) { }
+  constructor(private socketMan: SocketManagerService, private router: Router) { }
 
-  login(uName: string, pWord: string, eMail: string) {
+  login(uName: string, pWord: string) {
     console.log(this.listeners)
     if (!this.listeners) {
       this.setupListeners();
       this.listeners = true;
     }
-    let account = { username: uName, password: pWord, email: eMail };
+    console.log(uName, pWord)
+    let account = { username: uName, password: pWord };
     this.socketMan.emitEvent('user-login', account);
   }
 
@@ -29,8 +31,12 @@ export class AccountManagerService implements OnInit {
       this.setupListeners();
       this.listeners = true;
     }
+    console.log(uName, pWord, eMail)
     let account = { username: uName, password: pWord, email: eMail };
     this.socketMan.emitEvent('create-user', account);
+    setTimeout(() => {
+      this.socketMan.emitEvent('user-login', account);
+    }, 50);
   }
 
   deleteUsers() {
@@ -38,15 +44,24 @@ export class AccountManagerService implements OnInit {
   }
 
   setupListeners() {
+    this.socketMan.subscribeToEvent('update-stats', (account) => {
+      this.account = account;
+      console.log('Adding one to stats')
+    })
+
     this.socketMan.subscribeToEvent('user-log-in', (account) => {
       this.account = account; 
       console.log(this.account, 'Successfully logged in'); 
       alert('Successfully logged in'); 
 
       localStorage.setItem('login-token', account.username);
-      setInterval(() => {
-        localStorage.removeItem('login-token');
-      }, 6000000)
+
+      const today = new Date()
+      const tomorrow = new Date(today)
+      tomorrow.setDate(tomorrow.getDate() + 1)
+
+      localStorage.setItem('auth-token', tomorrow.getTime().toString())
+      this.router.navigateByUrl('/account')
     });
 
     this.socketMan.subscribeToEvent('user-log-in-failed', () => {
@@ -56,7 +71,6 @@ export class AccountManagerService implements OnInit {
   }
 
   ngOnInit(): void {
-    
   }
 
 }

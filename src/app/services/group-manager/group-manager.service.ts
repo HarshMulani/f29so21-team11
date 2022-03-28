@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { WhiteBoardAction } from 'src/app/models/WhiteBoardAction';
 import { WhiteBoardRoom } from 'src/app/models/WhiteBoardRoom';
 import { RoomManagerService } from '../room-manager/room-manager.service';
@@ -18,10 +18,10 @@ export class GroupManagerService {
   tempcan : HTMLCanvasElement | null = null;
   canvas : HTMLCanvasElement | null = null;
 
-  constructor(private socketMan: SocketManagerService, private activeRoute: ActivatedRoute, private roomMan: RoomManagerService) {}
+  constructor(private socketMan: SocketManagerService, private activeRoute: ActivatedRoute, private router: Router, private roomMan: RoomManagerService) {}
 
   get currentRoomId() : string | null {
-    return this.activeRoute.snapshot.params['id']
+    return this.router.url.split('/')[2]
   }
 
 
@@ -86,11 +86,12 @@ export class GroupManagerService {
     this.tempcan.height = 1440
   }
 
-  createRoom() {
+  createRoom(n: string) {
     let can = document.createElement('canvas') as HTMLCanvasElement
     can.width = window.innerWidth * (3 / 5) - 20;
     can.height = can.width * (0.5625);
-    this.socketMan.emitEvent('create-group', can)
+    let user = localStorage.getItem('login-token');
+    this.socketMan.emitEvent('create-group', { name: n, manager: user })
   }
 
   subscribeToRoom() {
@@ -103,9 +104,19 @@ export class GroupManagerService {
   }
 
   listenToRoomWhiteboard(id: string) {
+    let currRoom = this.rooms.find((room) => room.id == id)
+    if (!currRoom!.participants.includes(localStorage.getItem('login-token')!)) {
+      console.log("adding 1 to groups")
+      this.rooms.find((room) => room.id == id)!.participants.push(localStorage.getItem('login-token')!)
+      this.socketMan.emitEvent('update-group-room', this.rooms.find((room) => room.id == id))
+      this.socketMan.emitEvent('update-user-stats', {name: localStorage.getItem('login-token'), stat: 'groups'})
+    }
+
     this.socketMan.subscribeToEvent(`group-update-${id}`, (actions: WhiteBoardAction) => {
       if (actions == null) return
-      this.draw(id, actions)
+      if (id == this.currentRoomId) {
+        this.draw(id, actions)
+      }
     })
   }
 
