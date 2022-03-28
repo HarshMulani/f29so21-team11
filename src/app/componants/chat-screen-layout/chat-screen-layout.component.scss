@@ -1,10 +1,10 @@
-:root {
-  --cbgc: #a8f0e6;
-}
+// :root {
+//   --cbgc: #a8f0e6;
+// }
 
 .grid {
   display: grid;
-  grid-template-columns: 30% 1fr;
+  grid-template-columns: 30% 70%;
   grid-auto-flow: column;
   height: 90vh;
 }
@@ -14,8 +14,15 @@
   background: linear-gradient(180deg, rgba(33, 51, 152, 1) 0%, rgba(235, 63, 66, 1) 100%);
   overflow: scroll;
   overflow-x: hidden;
+  margin-left: 10px;
 }
 
 .chat {
-  background-color: var(--cbgc)
+  background-color: var(--cbgc);
+  opacity: 70%;
+  margin-right: 10px;
+}
+
+.hidden {
+  display: none;
 }
