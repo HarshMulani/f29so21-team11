@@ -19,6 +19,20 @@ import { WhiteboardComponent } from './componants/whiteboard/whiteboard.componen
 import { GroupRoomComponent } from './componants/group-room/group-room.component';
 import { GroupManagerService } from './services/group-manager/group-manager.service';
 import { WhiteboardManagerService } from './services/whiteboard-manager/whiteboard-manager.service';
+import { AccountComponent } from './componants/account/account.component';
+
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { OverlayModule } from '@angular/cdk/overlay';
+import { AccountPageComponent } from './componants/account-page/account-page.component';
+import { LoginComponent } from './componants/login/login.component';
+import { SignUpPageComponent } from './componants/signup-page/signup-page.component';
+import { LoginTestComponent } from './componants/login-test/login-test.component';
+
 
 // const config: SocketIoConfig = { url: 'https://f29so-project.herokuapp.com', options: {} }
 
@@ -31,14 +45,26 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} }
     ChatScreenLayoutComponent,
     ChatWindowComponent,
     LoginPageComponent,
+    SignUpPageComponent,
     WhiteboardComponent,
-    GroupRoomComponent
+    GroupRoomComponent,
+    AccountComponent,
+    AccountPageComponent,
+    LoginComponent,
+    LoginTestComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     IonicModule,
-    SocketIoModule.forRoot(config)
+    SocketIoModule.forRoot(config),
+    MatInputModule,
+    MatFormFieldModule,
+    MatCardModule,
+    MatButtonModule,
+    MatBottomSheetModule,
+    BrowserAnimationsModule,
+    OverlayModule
   ],
   providers: [SocketManagerService, RoomManagerService, AccountManagerService, GroupManagerService, WhiteboardManagerService],
   bootstrap: [AppComponent]
