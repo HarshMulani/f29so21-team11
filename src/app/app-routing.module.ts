@@ -7,35 +7,35 @@ import { LoginPageComponent } from './componants/login-page/login-page.component
 import { RoomIdExistsGuard } from './guards/room-id-exists/room-id-exists.guard';
 import { WhiteboardComponent } from './componants/whiteboard/whiteboard.component';
 import { GroupRoomComponent } from './componants/group-room/group-room.component';
+import { SignUpPageComponent } from './componants/signup-page/signup-page.component';
+import { AccountComponent } from './componants/account/account.component';
+import { AccountPageComponent } from './componants/account-page/account-page.component';
+import { LoginComponent } from './componants/login/login.component';
+import { LoginTestComponent } from './componants/login-test/login-test.component';
 
 const routes: Routes = [
   {
-    path: 'login',
-    component: LoginPageComponent
+    path: 'account',
+    component: AccountComponent,
+    children: [{path: '', component: AccountPageComponent}, {path:'login', component: LoginTestComponent}]
   },
   {
-    path: 'logged',
-    children:[  
-    {
-      path: 'whiteboard',
-      component: GroupRoomComponent,
-      children: [{ path: ':id', component: WhiteboardComponent, canActivate: [RoomIdExistsGuard]}],
-    },
-  
-    {
-      path: 'home',
-      component: HomePageComponent,
-    },
-    {
-      path: 'chat',
-      component: ChatScreenLayoutComponent,
-      children: [{ path: ':id', component: ChatWindowComponent, canActivate: [RoomIdExistsGuard]}],
-    }
-  ]
+    path: 'whiteboard',
+    component: GroupRoomComponent,
+    children: [{ path: ':id', component: WhiteboardComponent, canActivate: [RoomIdExistsGuard] }],
+  },
+  {
+    path: 'home',
+    component: HomePageComponent,
+  },
+  {
+    path: 'chat',
+    component: ChatScreenLayoutComponent,
+    children: [{ path: ':id', component: ChatWindowComponent, canActivate: [RoomIdExistsGuard] }],
   },
   {
     path: '**',
-    redirectTo: 'login',
+    redirectTo: 'home',
   }
 ];
 
