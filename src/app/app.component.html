@@ -7,25 +7,29 @@
           <span><img class="icon" src="https://unpkg.com/ionicons@5.5.2/dist/svg/business-outline.svg"></span>
         </a>
       </li>
-      <li id="2" class="item active" (click)="activeLink(2)" routerLink="logged/home">
+      <!-- <li id="2" class="item active" (click)="activeLink(2)" routerLink="logged/home"> -->
+      <li id="2" class="item active" (click)="activeLink(2)" routerLink="/home">
         <span class="text">Home</span>
         <span>
           <img class="icon" src="https://unpkg.com/ionicons@5.5.2/dist/svg/home-outline.svg">
         </span>
       </li>
-      <li id="3" class="item" (click)="activeLink(3)" routerLink="logged/chat">
+      <!-- <li id="3" class="item" (click)="activeLink(3)" routerLink="logged/chat"> -->
+      <li id="3" class="item" (click)="activeLink(3)" routerLink="/chat">
         <span class="text">Chat</span>
         <span>
           <img class="icon" src="https://unpkg.com/ionicons@5.5.2/dist/svg/chatbubbles-outline.svg">
         </span>
       </li>
-      <li id="4" class="item" (click)="activeLink(4)" routerLink="logged/whiteboard">
+      <!-- <li id="4" class="item" (click)="activeLink(4)" routerLink="logged/whiteboard"> -->
+      <li id="4" class="item" (click)="activeLink(4)" routerLink="/whiteboard">
         <span class="text">whiteboard</span>
         <span>
           <img class="icon" src="https://unpkg.com/ionicons@5.5.2/dist/svg/create-outline.svg">
         </span>
       </li>
-      <li id="5" class="item" (click)="activeLink(5)" routerLink="logged/login">
+      <!-- <li id="5" class="item" (click)="activeLink(5)" routerLink="logged/login"> -->
+      <li id="5" class="item" (click)="activeLink(5)" routerLink="/account">
         <span class="text">Login</span>
         <span>
           <img class="icon" src="https://unpkg.com/ionicons@5.5.2/dist/svg/log-in-outline.svg">
@@ -38,7 +42,9 @@
       <span class="slider round"></span>
     </label>
   </div>
-  <div class="spacer"> </div>
+  <div class="spacer">
+
+  </div>
 
   <router-outlet></router-outlet>
 
