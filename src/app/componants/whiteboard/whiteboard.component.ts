@@ -1,6 +1,6 @@
 import { templateSourceUrl, ThrowStmt } from '@angular/compiler';
 import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { windowWhen } from 'rxjs';
 import { Color } from 'src/app/models/Color';
 import { WhiteBoardAction } from 'src/app/models/WhiteBoardAction';
@@ -20,27 +20,28 @@ export class WhiteboardComponent implements OnInit, AfterViewInit, OnDestroy {
   events: Array<string> = ["mousedown", "mouseup", "mousemove"]
   listEvents : any = {}
 
-  constructor(private groupMan: GroupManagerService, private activeRoute: ActivatedRoute) { }
+  constructor(private groupMan: GroupManagerService, private router: Router) { }
 
   get canvas () : HTMLCanvasElement {
     return document.getElementById('Canvas') as HTMLCanvasElement
   }
 
   get currentRoomId() : string | null {
-    return this.activeRoute.snapshot.params['id']
+    return this.router.url.split('/')[2]
   }
 
   ngOnInit(): void {
   }
 
   ngAfterViewInit() {
-    this.setCanvas()
-    this.setupMouse()
+    setTimeout(() => {
+      this.setCanvas()
+      this.setupMouse()
+    }, 200);
   }
 
   ngOnDestroy() {
     this.events.forEach((name) => document.removeEventListener(name, this.listEvents[name], false))
-    // document.getElementById('grid')!.remove()
   }
 
   setupMouse() {
@@ -92,7 +93,6 @@ export class WhiteboardComponent implements OnInit, AfterViewInit, OnDestroy {
             size: this.getSize(),
             color: this.getColors()
           };
-          
           this.groupMan.emitDraw(actions);
         }
       }
