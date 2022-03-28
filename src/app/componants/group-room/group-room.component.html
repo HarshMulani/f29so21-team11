@@ -1,12 +1,27 @@
-<p>group-room works!</p>
-<div style="overflow: scroll; overflow-x: hidden; background-color: rgb(121, 189, 228);">
-  <button (click)="createRoom()">Create Room</button>
-  <ul *ngFor="let r of rooms">
-    <li>
-      <div (click)="joinRoom(r.id)">
-        {{r.id}}
+<div class="to-hide">
+  <div
+    style="background-color: var(--bgc); margin-right: 10px; margin-left: 10px; border: 5px solid #000; transition: 0.5s">
+    <button (click)="createRoom()">Create Room</button>
+    <br>
+    <button (click)="isOpen = !isOpen" type="button" cdkOverlayOrigin #trigger="cdkOverlayOrigin">
+      {{isOpen ? "Close" : "Open"}}
+    </button>
+
+    <!-- This template displays the overlay content and is connected to the button -->
+    <ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="trigger" [cdkConnectedOverlayOpen]="isOpen">
+
+      <div style="height: 300px; overflow-y: scroll; scrollbar-width: none;">
+        <mat-card>
+          <ul *ngFor="let r of rooms" class="list">
+            <li>
+              <div (click)="joinRoom(r.id)" (click)="isOpen = !isOpen">
+                <p>{{r.name}}</p>
+              </div>
+            </li>
+          </ul>
+        </mat-card>
       </div>
-    </li>
-  </ul>
+    </ng-template>
+  </div>
+  <router-outlet></router-outlet>
 </div>
-<router-outlet></router-outlet>
