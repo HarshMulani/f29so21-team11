@@ -4,14 +4,14 @@ import { AccountManagerService } from 'src/app/services/account-manager/account-
 @Component({
   selector: 'app-signup-page',
   templateUrl: './signup-page.component.html',
-  styleUrls: ['./signup-page.component.scss']
+  styleUrls: ['./signup-page.component.scss', './signup-page-small.component.scss']
 })
 export class SignUpPageComponent {
 
   constructor(private accountMan : AccountManagerService) { }
 
   signup(user: string, email: string, password: string) {
-    this.accountMan.createUser(user, email, password);
+    this.accountMan.signup(user, email, password);
   }
 
   deleteUsers() {

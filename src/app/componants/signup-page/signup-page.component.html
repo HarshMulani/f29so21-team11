@@ -1,18 +1,18 @@
-<body>
-  <div class="grid">
-    <div class="container col2 row2">
-      <p id="Uname" class="col1 row1">Username</p>
-      <p id="Email" class="col1 row3">E-mail Address</p>
-      <p id="Pword" class="col1 row2">Password</p>
-      
+<!-- <body> -->
+<!-- <div class="grid"> -->
+<div class="container col2 row2">
+  <p id="Uname" class="col1 row1">Username </p>
+  <p id="Pword" class="col1 row2">Password </p>
+  <p id="Email" class="col1 row3">email: </p>
 
-      <input #username id="userin">
-      <input #email id="emailin" type="email">
-      <input #password id="signin" type="password">
-      
+  <input #username id="userin">
+  <input #password id="signin" type="password">
+  <input #email id="emailin">
 
-      <button id="signup" (click)='signup(username.value, email.value, password.value)'>Sign Up!</button>
-      <!-- <button id="clear" (click)='deleteUsers()'>clear users</button> -->
-    </div>
-  </div>
-</body>
+  <!-- <button id="login" (click)='login(username.value, password.value)'>Log In!</button> -->
+  <button id="signup" (click)='signup(username.value, password.value, email.value)'>Signup</button>
+  <!-- <button id="clear" (click)='deleteUsers()'>clear users</button> -->
+</div>
+
+<!-- </div> -->
+<!-- </body> -->
