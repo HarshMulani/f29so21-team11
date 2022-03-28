@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Message } from 'src/app/models/Message';
 import { Room } from 'src/app/models/Room';
@@ -11,25 +11,33 @@ import { ChatWindowComponent } from '../chat-window/chat-window.component';
   templateUrl: './room-list.component.html',
   styleUrls: ['./room-list.component.scss'],
 })
-export class RoomListComponent implements OnInit {
+export class RoomListComponent implements OnInit, AfterViewInit {
 
   constructor(private socketMan: SocketManagerService, private roomMan: RoomManagerService, private router: Router, private activeRoute: ActivatedRoute) { }
+
+  selectedRooms: Array<Room> = [];
 
   get rooms(): Array<Room> {
     return this.roomMan.rooms;
   }
 
-  get selectedRooms(): Array<Room> {
-    let roomList: Array<Room> = new Array<Room>();
+  // get selectedRooms(): Array<Room> {
+  //   let roomList: Array<Room> = new Array<Room>();
     
-    let searchVal = document.getElementById('search-box') as HTMLInputElement;
+  //   let searchVal = document.getElementById('search-box') as HTMLInputElement;
 
-    this.rooms.forEach((room) => { if (room.name.includes(searchVal.value)) { roomList.push(room) } });
-    return roomList;
-  }
+  //   this.rooms.forEach((room) => { if (room.name.toLowerCase().includes(searchVal.value.toLowerCase())) { roomList.push(room) } });
+  //   return roomList;
+  // }
 
   createRoom() {
-    this.roomMan.createRoom();
+    let name = prompt("Enter the room name", "name");
+    if (name != null) {
+      this.roomMan.createRoom(name);
+    }
+    setTimeout(() => {
+      this.search();
+    }, 10);
   }
 
   deleteRoom() {
@@ -51,8 +59,21 @@ export class RoomListComponent implements OnInit {
     this.roomMan.subscribeToRoom();
   }
 
-  search() {
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      this.search();
+    }, 400);
+  }
 
+  search() {
+    let roomList: Array<Room> = new Array<Room>();
+    let searchVal = document.getElementById('search-box') as HTMLInputElement;
+    if (searchVal.value.length != 0) {
+      this.rooms.forEach((room) => { if (room.name.toLowerCase().includes(searchVal.value.toLowerCase())) { roomList.push(room) } });
+      this.selectedRooms = roomList;
+    } else {
+      this.selectedRooms = this.rooms;
+    }
   }
 
 }

@@ -13,42 +13,42 @@
 .search {
   display: grid;
   grid-template-rows: 100%;
-  grid-template-columns: 100px auto 200px;
+  grid-template-columns: repeat(1fr, 5);
   grid-row: 1/2;
   grid-column: 1/2;
 }
 
 .search-box {
   grid-row: 1/2;
-  grid-column: 2/3;
+  grid-column: 2/5;
+  margin: 5px;
 }
 
 .create {
   grid-row: 1/2;
   grid-column: 1/2;
+  margin: 5px;
 }
 
 .search-button {
   grid-row: 1/2;
-  grid-column: 3/4;
+  grid-column: 5/6;
   position: relative;
   background: rgb(82, 177, 221);
   background: linear-gradient(180deg, rgba(82, 177, 221, 1) 0%, rgb(10, 84, 196) 100%);
-  height: 80%;
+  height: 90%;
   width: 80%;
-  margin: 3% 10% 10% 10%;
+  // margin: 3% 10% 10% 10%;
   display: flex;
   justify-content: center;
   align-content: center;
   border-radius: 20px 20px 20px 20px;
   user-select: none;
+  margin: 5px;
 }
 
 .search-button p {
   position: relative;
-  display: inline-block;
   text-align: center;
   padding-top: 4px;
 }
-
-.list {}
