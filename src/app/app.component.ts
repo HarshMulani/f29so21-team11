@@ -30,6 +30,7 @@ export class AppComponent implements AfterViewInit {
       // this.router.navigate(['/account'], { relativeTo: this.activeRoute });
       this.router.navigateByUrl('/account/login')
       this.activeLink(5)
+      return;
     }
 
     this.activeLink(this.tab.indexOf(window.location.href.split('/')[3]));
