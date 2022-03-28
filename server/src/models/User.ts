@@ -3,4 +3,6 @@ export interface User {
     username: string;
     password: string;
     email: string;
+    stats: {posts: number, groups: number, chats: number};
+    bio: string;
 }
