@@ -11,8 +11,8 @@ var server = (io: Server/*, connection: Connection*/) => {
 
     const rs = new RoomSocket(io/*, connection*/); // setting up functionality of rooms
     const ms = new MessageSocket(io, rs/*, connection*/); // setting up functionality of messages
-    const gs = new GroupSockets(io, rs/*, connection*/); // setting up functionality of groups
     const us = new UserSocket(io/*, connection*/); // setting up functionality of user connections
+    const gs = new GroupSockets(io, rs, us/*, connection*/); // setting up functionality of groups
     const is = new ImageSocket(io/*, connection*/); // setting up functonality of image connections
 
     io.on('connection', (socket: Socket) => { // user connects
