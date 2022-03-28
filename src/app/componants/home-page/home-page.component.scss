@@ -1,5 +1,9 @@
-:root {
-  --bgc: beige;
+// :root {
+//   --bgc: beige;
+// }
+
+.hidden {
+  display: none;
 }
 
 .main {
@@ -8,8 +12,10 @@
   overflow: scroll;
   overflow-x: hidden;
   display: grid;
-  grid-template-columns: 1fr 502px 1fr;
+  top: 10px;
+  grid-template-columns: 1fr 1000px 1fr;
   grid-template-rows: 75px auto;
+  transition: 0.5s;
 }
 
 .list {
@@ -23,10 +29,12 @@
   margin: 0 0 10% 0;
 }
 
-.comment {
-  background: grey;
-  width: 100%;
+.caption {
+  background: rgb(221, 220, 220);
+  padding: 2%;
+  width: 96%;
   height: 100px;
+  border-radius: 10px 10px 10px 10px;
 }
 
 // li {

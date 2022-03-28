@@ -1,17 +1,28 @@
 <!-- <router-outlet></router-outlet> -->
-<div class="main">
-  <div>
-    <input type="file" id="image">
-    <button (click)="Upload()">Upload</button>
-  </div>
-  <div class="list">
-    <ul *ngFor="let p of pictures">
-      <li class="item">
-        <img src={{p.img}} style="border: 1px solid black;" />
-        <div class="comment">
-
-        </div>
-      </li>
-    </ul>
+<div class="to-hide">
+  <div class="main">
+    <div>
+      <input type="file" id="image">
+      <button (click)="Upload()">Upload</button>
+    </div>
+    <div>
+      <button (click)="Read()" style="position: relative; top: 10px; width: 40px; height: 40px;">
+        <img src="https://unpkg.com/ionicons@5.5.2/dist/svg/reload-outline.svg">
+      </button>
+    </div>
+    <div class="list">
+      <ul *ngFor="let p of pictures">
+        <mat-card>
+          <!-- <li class="item"> -->
+          <!-- <img src={{p.img}} style="border: 1px solid black;" /> -->
+          <img mat-card-image src={{p.img}} style="border: 1px solid black;">
+          <div class="caption">
+            <p>Uploaded by: {{ p.uploader }}</p>
+            <p>{{ p.caption }}</p>
+          </div>
+          <!-- </li> -->
+        </mat-card>
+      </ul>
+    </div>
   </div>
 </div>

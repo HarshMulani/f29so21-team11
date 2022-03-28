@@ -1,4 +1,5 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
+import { windowWhen } from 'rxjs';
 import { SocketManagerService } from 'src/app/services/socket-manager/socket-manager.service';
 
 @Component({
@@ -6,63 +7,99 @@ import { SocketManagerService } from 'src/app/services/socket-manager/socket-man
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.scss']
 })
-export class HomePageComponent implements OnInit, AfterViewInit {
+export class HomePageComponent implements OnInit, AfterViewInit, OnDestroy {
 
-  pictures : Array<{id: string, uploadTime: Date, img: string}> = [];
+  pictures : Array<{ id: string, uploadTime: string, caption: string, img: string, uploader: string }> = [];
+
+  events: any = {};
 
   constructor(private socketMan: SocketManagerService) { }
 
+  ngOnDestroy(): void {
+    document.removeEventListener('scroll', this.events['scroll'], false)
+  }
+
   ngOnInit(): void {
-    let can = document.createElement('canvas') as HTMLCanvasElement
-    if (window.innerWidth < 500) {
-      can.setAttribute('width', (window.innerWidth - 10).toString())
-      can.setAttribute('height', (window.innerWidth - 10).toString())
-      let ctx = can.getContext('2d')
-      ctx!.beginPath()
-      ctx!.fillStyle = "#ffffff"
-      ctx!.rect(0, 0, window.innerWidth, window.innerWidth)
-      ctx!.fill()
-      ctx!.closePath()
-
-      ctx!.beginPath()
-      ctx!.fillStyle = "#ff00ff"
-      ctx!.rect(10, 10, 100, 100)
-      ctx!.fill()
-      ctx!.closePath()
-
-    } else {
-      can.setAttribute('width', '500')
-      can.setAttribute('height', '500')
-      let ctx = can.getContext('2d')
-      ctx!.beginPath()
-      ctx!.fillStyle = "#ffffff"
-      ctx!.rect(0, 0, 500, 500)
-      ctx!.fill()
-      ctx!.closePath()
-
-      ctx!.beginPath()
-      ctx!.fillStyle = "#ff00ff"
-      ctx!.rect(10, 10, 100, 100)
-      ctx!.fill()
-      ctx!.closePath()
-
-    }
+    let date = localStorage.getItem('auth-token')
+    let currDate = new Date().getTime().toString();
     
-    this.pictures.push({id: "1", uploadTime: new Date(), img: can.toDataURL()});
-    this.pictures.push({id: "2", uploadTime: new Date(), img: can.toDataURL()});
-    this.pictures.push({id: "3", uploadTime: new Date(), img: can.toDataURL()});
+    console.log(date, currDate)
+    if (date) {
+      if (date > currDate) {
+        let elems = document.getElementsByClassName('to-hide')
+
+        for (let i = 0; i < elems.length; i++) {
+          elems[i].classList.remove('hidden')
+        }
+        return;
+      }
+    }
+    let elems = document.getElementsByClassName('to-hide')
+
+    for (let i = 0; i < elems.length; i++) {
+      elems[i].classList.add('hidden')
+    }
   }
 
   ngAfterViewInit(): void {
-
+    this.socketMan.subscribeToEvent('image-list-update', (data: Array<{ id: string, uploadTime: string, caption: string, img: string, uploader: string }>) => {
+      // this.pictures = [];
+      // console.log(data.length)
+      for (var i = 0; i < data.length; i++) {
+        setTimeout(() => {
+          let d1 = data.shift();
+          if (d1) {
+          let img = new Image;
+          img.onload = () => {
+            let can = document.createElement('canvas') as HTMLCanvasElement;
+            
+              if (window.innerWidth < 500) {
+                console.log("making small")
+                can.setAttribute('width', (window.innerWidth - 10).toString())
+                can.setAttribute('height', (window.innerWidth - 10).toString())
+                let ctx = can.getContext('2d')
+                ctx!.drawImage(img, 0, 0, window.innerWidth - 10, window.innerWidth - 10)
+              } else {
+                can.setAttribute('width', '1000')
+                can.setAttribute('height', '1000')
+                let ctx = can.getContext('2d')
+                ctx!.drawImage(img, 0, 0, 1000, 1000)
+              }
+              
+              if (!this.pictures.find((picture) => picture.id == d1!.id)) {
+                console.log("Caption: " + d1!.caption, "Adding picture with url: ", can.toDataURL())
+                this.pictures.unshift({ id: d1!.id, uploadTime: d1!.uploadTime, caption: d1!.caption, img: can.toDataURL(), uploader: d1!.uploader });
+              }
+          }
+          img.src = d1!.img;
+          // console.log(d1!.img)
+        }
+        }, i * 100)
+      }
+    })
+    let id = setInterval(() => {
+      this.Read()
+    }, 10000);
   }
 
   Upload () {
     let reader = new FileReader();
+    let input = document.getElementById('image') as HTMLInputElement;
+    let file = input.files![0];
+
+    let cap = prompt("Add Caption", "caption")
+
     reader.addEventListener('load', (e) => {
-      this.socketMan.emitEvent('create-image', e.target!.result);
+      console.log("adding 1 to posts")
+      this.socketMan.emitEvent('create-image', {img: reader.result, owner: localStorage.getItem('login-token'), caption: cap, uploader: localStorage.getItem('login-token')});
+      this.socketMan.emitEvent('update-user-stats', {name: localStorage.getItem('login-token'), stat: 'posts'})
+      console.log(reader.result)
     })
+    reader.readAsDataURL(file);
   }
 
-
+  Read() {
+    this.socketMan.emitEvent('get-all-image', null);
+    console.log(this.pictures.length)
+  }
 }
