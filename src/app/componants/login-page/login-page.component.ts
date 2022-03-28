@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injector, OnInit } from '@angular/core';
 import { AccountManagerService } from 'src/app/services/account-manager/account-manager.service';
 
 @Component({
@@ -17,7 +17,4 @@ export class LoginPageComponent {
   deleteUsers() {
     this.accountMan.deleteUsers();
   }
-
-  
-
 }
