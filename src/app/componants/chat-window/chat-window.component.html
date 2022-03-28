@@ -1,21 +1,24 @@
-<div id="messageHist" style="height: 80vh; overflow:scroll; overflow-x: hidden;">
-  <h1>
-    {{ currentRoomId }}
-  </h1>
-  <button (click)="unsubscribeFromRoom()"></button>
+<div id="messageHist" style="height: 80vh; width: 100%;">
+  <div class="top-list">
+    <h1> {{ room.name }} </h1>
+    <button *ngIf="manager" class="room-edit" (click)="changeRoomName()">Change room name</button>
+  </div>
+  <!-- <button (click)="unsubscribeFromRoom()"></button> -->
 
-  <div class="list" style="height: 90%;">
-    <ul *ngFor="let m of messages" style="margin: 40px;">
-      <li>
-        <div>{{ m.id }}</div>
-        <div>{{ m.message }}</div>
-        <div>{{ m.sentBy }}</div>
-        <div>{{ m.timestamp }}</div>
+  <div class="list" style="height: 95%; width: 100%; overflow-y:scroll;">
+    <ul>
+      <li *ngFor="let m of messages" class="message">
+        <!-- <div>{{ m.id }}</div> -->
+        <div class="message-list">
+          <p>{{ m.sentBy }}: {{ m.message }}</p>
+        </div>
+        <!-- <div>{{ m.timestamp }}</div> -->
       </li>
     </ul>
   </div>
 </div>
-<div style="height: 10%;">
-  <input #message>
-  <button (click)="sendMessage(message.value)">send message</button>
+<div style="height: 10%; display: flex;">
+  <textarea style="width: 80%; height: 100%; border: 1; resize: none;" id="msgInput"
+    (keydown.enter)="sendMessage()"></textarea>
+  <button style="width: 20%; height: 100%; border: 1;" (click)="sendMessage()">send message</button>
 </div>

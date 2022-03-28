@@ -1,0 +1,28 @@
+.room-edit {
+  position: relative;
+  left: 50%;
+  width: 120px;
+  height: 30px;
+  top: 10px;
+}
+
+.top-list {
+  display: flex;
+  height: 5%;
+}
+
+.message-list {
+  display: flex;
+  height: fit-content;
+  overflow-wrap: anywhere;
+}
+
+.list {
+  font-size: 1.5em;
+}
+
+.message {
+  position: relative;
+  padding: 10px;
+  list-style: none;
+}
