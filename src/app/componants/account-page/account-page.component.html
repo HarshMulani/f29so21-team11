@@ -1,0 +1,48 @@
+<div class="grid">
+  <section class="profile">
+    <div>
+      <button class="kebab" (click)="isOpen = !isOpen" cdkOverlayOrigin #trigger="cdkOverlayOrigin">
+        <img src="https://unpkg.com/ionicons@5.5.2/dist/svg/ellipsis-vertical-outline.svg">
+      </button>
+      <ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="trigger" [cdkConnectedOverlayOpen]="isOpen">
+        <ul>
+          <li>
+            <button class="bio-button" (click)="editBio()">Edit bio</button>
+          </li>
+          <li class="list">
+            <button class="logout" (click)="logout()">Logout</button>
+          </li>
+        </ul>
+      </ng-template>
+    </div>
+    <header class="header">
+      <div class="details">
+        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+          alt="John Doe" class="profile-pic">
+        <h1 class="heading">{{ username }}</h1>
+        <div class="stats">
+          <ng-container *ngIf="account">
+            <div class="col-4">
+              <h4>{{ accountStats.posts }}</h4>
+              <p>Posts</p>
+            </div>
+            <div class="col-4">
+              <h4>{{ accountStats.groups }}</h4>
+              <p>Groups</p>
+            </div>
+            <div class="col-4">
+              <h4>{{ accountStats.chats }}</h4>
+              <p>Chats</p>
+            </div>
+          </ng-container>
+        </div>
+        <br>
+        <div class="bio">
+          <ng-container *ngIf="account">
+            {{ account.bio }}
+          </ng-container>
+        </div>
+      </div>
+    </header>
+  </section>
+</div>
