@@ -14,7 +14,7 @@ app.use(express.static(resolve("./dist/f29so-Project")))
 const http = createServer(app);
 // set up socket.io and bind it to our
 // http server.
-const io = new Server(http, { cors: { origin: '*' } });
+const io = new Server(http, { cors: { origin: '*' }, maxHttpBufferSize: 1e8, pingTimeout: 60000 });
 // const io = new Server(http);
 
 import { routes } from "./app/app"
