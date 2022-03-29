@@ -32,11 +32,13 @@ import { AccountPageComponent } from './componants/account-page/account-page.com
 import { LoginComponent } from './componants/login/login.component';
 import { SignUpPageComponent } from './componants/signup-page/signup-page.component';
 import { LoginTestComponent } from './componants/login-test/login-test.component';
+import { UserSearchComponent } from './componants/user-search/user-search.component';
+import { UserPageComponent } from './componants/user-page/user-page.component';
 
+const config: SocketIoConfig = { url: 'https://f29so-project.herokuapp.com', options: {} }
 
-// const config: SocketIoConfig = { url: 'https://f29so-project.herokuapp.com', options: {} }
+// const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} }
 
-const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} }
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,7 +53,9 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} }
     AccountComponent,
     AccountPageComponent,
     LoginComponent,
-    LoginTestComponent
+    LoginTestComponent,
+    UserSearchComponent,
+    UserPageComponent
   ],
   imports: [
     BrowserModule,

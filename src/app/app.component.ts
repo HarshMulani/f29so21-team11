@@ -10,7 +10,7 @@ import { SocketManagerService } from './services/socket-manager/socket-manager.s
 export class AppComponent implements AfterViewInit {
   title = 'f29so-Project';
 
-  tab = ['', 'company', 'home', 'chat', 'whiteboard', 'account']
+  tab = ['', 'company', 'home', 'chat', 'whiteboard', 'account', 'users']
 
   currentMode = -1;
 

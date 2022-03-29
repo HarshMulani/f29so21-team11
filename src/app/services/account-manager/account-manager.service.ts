@@ -12,6 +12,8 @@ export class AccountManagerService implements OnInit {
 
   listeners : boolean = false;
 
+  searchedUser: User | null = null
+
   constructor(private socketMan: SocketManagerService, private router: Router) { }
 
   login(uName: string, pWord: string) {

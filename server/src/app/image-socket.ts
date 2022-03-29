@@ -38,7 +38,7 @@ export class ImageSocket extends crudtemplate<any> {
                 // console.log(Object.keys(js)[i])
                 data[i] = { id: js[Object.keys(js)[i]].id, uploadTime: Object.keys(js)[i], caption: js[Object.keys(js)[i]].caption, img: js[Object.keys(js)[i]].URL, uploader: js[Object.keys(js)[i]].uploader };
             }
-            console.log(data.length)
+            // console.log(data.length)
             socket.emit('image-list-update', data)
         })
     }

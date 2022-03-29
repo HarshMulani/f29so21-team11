@@ -126,25 +126,31 @@ a {
 // }
 
 .navigation ul li:nth-child(2).active~.indicator {
-  transform: translate(calc(100px * 1));
+  transform: translate(calc(76px));
   background: rgb(33, 51, 152);
   background: linear-gradient(120deg, rgba(33, 51, 152, 1) 0%, rgba(235, 63, 66, 1) 100%);
 }
 
 .navigation ul li:nth-child(3).active~.indicator {
-  transform: translate(calc(100px * 2));
+  transform: translate(calc(159px));
   background: rgb(33, 51, 152);
   background: linear-gradient(90deg, rgba(33, 51, 152, 1) 0%, rgba(235, 63, 66, 1) 100%);
 }
 
 .navigation ul li:nth-child(4).active~.indicator {
-  transform: translate(calc(100px * 3));
+  transform: translate(calc(242px));
   background: rgb(33, 51, 152);
   background: linear-gradient(60deg, rgba(33, 51, 152, 1) 0%, rgba(235, 63, 66, 1) 100%);
 }
 
 .navigation ul li:nth-child(5).active~.indicator {
-  transform: translate(calc(100px * 4));
+  transform: translate(calc(325px));
+  background: rgb(33, 51, 152);
+  background: linear-gradient(30deg, rgba(33, 51, 152, 1) 0%, rgba(235, 63, 66, 1) 100%);
+}
+
+.navigation ul li:nth-child(6).active~.indicator {
+  transform: translate(calc(408px));
   background: rgb(33, 51, 152);
   background: linear-gradient(30deg, rgba(33, 51, 152, 1) 0%, rgba(235, 63, 66, 1) 100%);
 }

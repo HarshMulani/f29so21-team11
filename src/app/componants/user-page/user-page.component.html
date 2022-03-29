@@ -1,0 +1,35 @@
+<div class="grid">
+  <section class="profile">
+    <header class="header">
+      <div class="details">
+        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+          alt="John Doe" class="profile-pic">
+        <ng-container *ngIf="account">
+          <h1 class="heading">{{ account.username }}</h1>
+          <div class="stats">
+
+            <div class="col-4">
+              <h4>{{ account.stats.posts }}</h4>
+              <p>Posts</p>
+            </div>
+            <div class="col-4">
+              <h4>{{ account.stats.groups }}</h4>
+              <p>Groups</p>
+            </div>
+            <div class="col-4">
+              <h4>{{ account.stats.chats }}</h4>
+              <p>Chats</p>
+            </div>
+
+          </div>
+        </ng-container>
+        <br>
+        <div class="bio">
+          <ng-container *ngIf="account">
+            {{ account.bio }}
+          </ng-container>
+        </div>
+      </div>
+    </header>
+  </section>
+</div>

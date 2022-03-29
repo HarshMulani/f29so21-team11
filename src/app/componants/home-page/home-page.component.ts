@@ -100,6 +100,6 @@ export class HomePageComponent implements OnInit, AfterViewInit, OnDestroy {
 
   Read() {
     this.socketMan.emitEvent('get-all-image', null);
-    console.log(this.pictures.length)
+    // console.log(this.pictures.length)
   }
 }

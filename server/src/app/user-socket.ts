@@ -66,9 +66,9 @@ export class UserSocket extends crudtemplate<UserModel> {
 
         let a = JSON.parse(json);
         user = a[name]
-        user.username = name         
-        
         if (user == undefined) return null
+        user.username = name         
+                
         return (user) ? user : null 
         // return this.accounts.find((user) => user.username == name);
     } 

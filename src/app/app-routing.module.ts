@@ -12,6 +12,9 @@ import { AccountComponent } from './componants/account/account.component';
 import { AccountPageComponent } from './componants/account-page/account-page.component';
 import { LoginComponent } from './componants/login/login.component';
 import { LoginTestComponent } from './componants/login-test/login-test.component';
+import { UserSearchComponent } from './componants/user-search/user-search.component';
+import { UserPageComponent } from './componants/user-page/user-page.component';
+import { UserExistsGuard } from './guards/user-exists/user-exists.guard';
 
 const routes: Routes = [
   {
@@ -32,6 +35,11 @@ const routes: Routes = [
     path: 'chat',
     component: ChatScreenLayoutComponent,
     children: [{ path: ':id', component: ChatWindowComponent, canActivate: [RoomIdExistsGuard] }],
+  },
+  {
+    path: 'users',
+    component: UserSearchComponent,
+    children: [{ path: ':name', component: UserPageComponent }]
   },
   {
     path: '**',

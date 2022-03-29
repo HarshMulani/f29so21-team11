@@ -134,4 +134,10 @@
     background: rgb(33, 51, 152);
     background: linear-gradient(30deg, rgba(33, 51, 152, 1) 0%, rgba(235, 63, 66, 1) 100%);
   }
+
+  .navigation ul li:nth-child(6).active~.indicator {
+    transform: translate(calc(60px * 5));
+    background: rgb(33, 51, 152);
+    background: linear-gradient(30deg, rgba(33, 51, 152, 1) 0%, rgba(235, 63, 66, 1) 100%);
+  }
 }
