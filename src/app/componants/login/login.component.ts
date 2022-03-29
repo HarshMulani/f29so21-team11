@@ -1,8 +1,4 @@
 import { Component, InjectionToken, OnInit } from '@angular/core';
-import { Overlay, OverlayConfig, OverlayRef } from '@angular/cdk/overlay';
-import { LoginPageComponent } from '../login-page/login-page.component';
-import { SignUpPageComponent } from '../signup-page/signup-page.component';
-import { ComponentPortal } from '@angular/cdk/portal';
 import { AccountManagerService } from 'src/app/services/account-manager/account-manager.service';
 import { Router } from '@angular/router';
 

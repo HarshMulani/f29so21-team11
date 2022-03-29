@@ -12,7 +12,6 @@ import { SocketManagerService } from './services/socket-manager/socket-manager.s
 import { HomePageComponent } from './componants/home-page/home-page.component';
 import { ChatScreenLayoutComponent } from './componants/chat-screen-layout/chat-screen-layout.component';
 import { ChatWindowComponent } from './componants/chat-window/chat-window.component';
-import { LoginPageComponent } from './componants/login-page/login-page.component';
 import { RoomManagerService } from './services/room-manager/room-manager.service';
 import { AccountManagerService } from './services/account-manager/account-manager.service';
 import { WhiteboardComponent } from './componants/whiteboard/whiteboard.component';
@@ -30,7 +29,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { AccountPageComponent } from './componants/account-page/account-page.component';
 import { LoginComponent } from './componants/login/login.component';
-import { SignUpPageComponent } from './componants/signup-page/signup-page.component';
 import { LoginTestComponent } from './componants/login-test/login-test.component';
 import { UserSearchComponent } from './componants/user-search/user-search.component';
 import { UserPageComponent } from './componants/user-page/user-page.component';
@@ -46,8 +44,6 @@ const config: SocketIoConfig = { url: 'https://f29so-project.herokuapp.com', opt
     HomePageComponent,
     ChatScreenLayoutComponent,
     ChatWindowComponent,
-    LoginPageComponent,
-    SignUpPageComponent,
     WhiteboardComponent,
     GroupRoomComponent,
     AccountComponent,

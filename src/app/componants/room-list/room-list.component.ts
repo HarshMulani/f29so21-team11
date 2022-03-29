@@ -37,7 +37,7 @@ export class RoomListComponent implements OnInit, AfterViewInit {
     }
     setTimeout(() => {
       this.search();
-    }, 10);
+    }, 500);
   }
 
   deleteRoom() {
