@@ -18,8 +18,8 @@ const image_socket_1 = require("./image-socket");
 var server = (io /*, connection: Connection*/) => {
     const rs = new room_socket_1.RoomSocket(io /*, connection*/); // setting up functionality of rooms
     const ms = new message_socket_1.MessageSocket(io, rs /*, connection*/); // setting up functionality of messages
-    const gs = new group_socket_1.GroupSockets(io, rs /*, connection*/); // setting up functionality of groups
     const us = new user_socket_1.UserSocket(io /*, connection*/); // setting up functionality of user connections
+    const gs = new group_socket_1.GroupSockets(io, rs, us /*, connection*/); // setting up functionality of groups
     const is = new image_socket_1.ImageSocket(io /*, connection*/); // setting up functonality of image connections
     io.on('connection', (socket) => {
         console.log("User with id " + socket.id + " joined");
