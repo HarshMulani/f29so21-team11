@@ -6,24 +6,24 @@
 
     <!-- Loginbit -->
     <div *ngIf="isLoginState()">
-      <input #username placeholder="Username" />
-      <input #password placeholder="Password">
+      <input #username placeholder="Username" required/>
+      <input #password placeholder="Password" type="password" required>
       <button mat-flat-button color="warn" (click)="Login(username.value, password.value)">Login</button>
 
     </div>
 
     <!-- Register bit -->
     <div *ngIf="isRegisterState()">
-      <input #username placeholder="Username" />
-      <input #email placeholder="Email" />
-      <input #password placeholder="Password" />
+      <input #username placeholder="Username" required />
+      <input #email placeholder="Email: youremail@example.com" type="email" required />
+      <input #password placeholder="Password" type="password" required />
       <button mat-flat-button color="warn"
         (click)="Signup(username.value, email.value, password.value)">Register</button>
     </div>
 
     <!-- Forgot Password bit -->
     <div *ngIf="isForgotPasswordState()">
-      <input #email placeholder="Email" />
+      <input #email placeholder="Email" type="email" required />
       <button mat-flat-button color="warn">Reset</button>
     </div>
 
