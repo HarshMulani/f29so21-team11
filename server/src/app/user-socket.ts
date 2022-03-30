@@ -6,12 +6,15 @@ import { Connection } from "typeorm";
 import { v4 as uuidv4 } from 'uuid';
 import { readFile, readFileSync, writeFileSync } from "fs";
 import { writeFile } from "fs/promises";
+import bcrypt from "bcrypt"
 
 export class UserSocket extends crudtemplate<UserModel> {
 
     private connection: Connection;
     private loggedInUsers: Array<string> = []
     private accounts: Array<UserModel> = []
+
+    private saltRounds = 10;
 
     constructor(io: Server/*, connection: Connection*/) {
         super(io, EventTypes.User)
@@ -114,7 +117,13 @@ export class UserSocket extends crudtemplate<UserModel> {
         user = a[account.username]      
 
         if (user == undefined) return false
-        return (user.password == account.password) ? true : false 
+
+        let result = await bcrypt.compare(account.password, user.password);
+
+        return result
+
+        // return (user.password == account.password) ? true : false 
+        
         // if (this.accounts.find((acc) => acc.username == account.username && acc.password == account.password)) {
         //     return true
         // } else {
@@ -131,12 +140,19 @@ export class UserSocket extends crudtemplate<UserModel> {
         this.accountExists(account.username).then(async (val) => {
             if (!val) {
                 let id = uuidv4();;
-                this.accounts.push({id: id, username: account.username, email: account.email, password: account.password, stats: {posts: 0, groups: 0, chats: 0}, bio: '' })
+
+                bcrypt.hash(account.password, this.saltRounds, function(err, hash) {
+                    if (err) throw err
+                    // this.accounts.push({id: id, username: account.username, email: account.email, password: hash, stats: {posts: 0, groups: 0, chats: 0}, bio: '' })
                 
-                let json = readFileSync("./server/accounts.json", 'utf8')
-                let a = JSON.parse(json);
-                a[account.username] = {id: id, email: account.email, password: account.password, stats: {posts: 0, groups: 0, chats: 0}, bio: '' };
+                    let json = readFileSync("./server/accounts.json", 'utf8')
+                    let a = JSON.parse(json);
+
+                a[account.username] = {id: id, email: account.email, password: hash, stats: {posts: 0, groups: 0, chats: 0}, bio: '' };
                 writeFileSync("./server/accounts.json", JSON.stringify(a));
+                });
+
+                
 
                 // let userRepo = this.connection.getRepository(User);
                 // let user = new User();
