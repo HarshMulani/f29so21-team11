@@ -7,72 +7,87 @@
 }
 
 .main {
-  height: 80vh;
+  height: 100%;
   background: var(--bgc);
-  overflow: scroll;
-  overflow-x: hidden;
+  // overflow: scroll;
+  overflow: hidden;
   display: grid;
   top: 10px;
-  grid-template-columns: 1fr 1000px 1fr;
+  grid-template-columns: 1fr auto 1fr;
   grid-template-rows: 75px auto;
   transition: 0.5s;
 }
 
-.list {
+.list-pos {
   grid-column: 2 / 3;
   grid-row: 2 / 3;
 }
 
-.item {
-  text-align: left;
-  position: relative;
-  margin: 0 0 10% 0;
+.list {
+  padding-bottom: 4em;
 }
 
-.caption {
-  background: rgb(221, 220, 220);
-  padding: 2%;
-  width: 96%;
-  height: 100px;
-  border-radius: 10px 10px 10px 10px;
+.upload {
+  border-radius: 20px;
+  width: auto;
+  height: auto;
+  background-color: rgb(201, 201, 201);
 }
 
-// li {
-//   padding: 4px;
-// }
+.image {
+  width: fit-content;
+  border: 1px solid #000;
+}
 
-
+.post-button {
+  position: fixed;
+  bottom: 4em;
+  right: 4em;
+}
 
 @media screen and (max-width: 1000px) {
-  .main {
-    height: 80vh;
-    background: var(--bgc);
-    overflow: scroll;
-    overflow-x: hidden;
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    grid-template-rows: 50px auto;
+  .hidden {
+    display: none;
   }
 
-  .list {
+  .main {
+    height: 100%;
+    background: var(--bgc);
+    // overflow: scroll;
+    overflow: hidden;
+    display: grid;
+    justify-content: center;
+    top: 10px;
+    grid-template-columns: 1fr auto 1fr;
+    grid-template-rows: 75px auto;
+    transition: 0.5s;
+  }
+
+  .list-pos {
     grid-column: 2 / 3;
     grid-row: 2 / 3;
   }
 
-  .item {
-    text-align: left;
-    position: relative;
-    width: max-content;
-    margin: 0 0 10% 0;
-  }
-
-  .comment {
-    background: grey;
+  .list {
+    padding-bottom: 4em;
     width: 100%;
-    height: 100px;
   }
 
-  li {
-    padding: 4px;
+  .upload {
+    border-radius: 20px;
+    width: 90vw;
+    height: auto;
+    background-color: rgb(201, 201, 201);
+  }
+
+  .image {
+    width: 100%;
+    border: 1px solid #000;
+  }
+
+  .post-button {
+    position: fixed;
+    bottom: 4em;
+    right: 4em;
   }
 }

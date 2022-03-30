@@ -2,16 +2,6 @@
   display: none;
 }
 
-.list {
-  width: 100px;
-  border: solid 1px #ccc;
-  border-radius: 5px;
-  background: #fff;
-  text-align: center;
-  padding: 10px;
-  margin: 0;
-}
-
 .list>li {
   list-style-type: none;
   border-bottom: solid 1px #8b8b8b;
@@ -23,4 +13,40 @@
 
 .list>li:last-child {
   border-bottom: none;
+}
+
+#top-container {
+  background-color: #9FE4F9;
+  display: grid;
+  padding: 8px;
+  grid-template-columns: 100%;
+  width: 60%;
+  left: 20%;
+  border-radius: 15px;
+}
+
+#button-content {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.list-pos {
+  height: 300px;
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
+
+.list {
+  width: 100px;
+  border: solid 1px #ccc;
+  border-radius: 5px;
+  background: #fff;
+  text-align: center;
+  padding: 10px;
+  margin: 0;
+}
+
+.no-room {
+  display: flex;
+  justify-content: center;
 }

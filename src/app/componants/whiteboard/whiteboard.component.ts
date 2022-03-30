@@ -51,9 +51,14 @@ export class WhiteboardComponent implements OnInit, AfterViewInit, OnDestroy {
 
   setCanvas() {
     this.groupMan.canvas = document.getElementById('Canvas') as HTMLCanvasElement;
-    this.canvas.width = window.innerWidth * (3 / 5) - 20;
-    this.canvas.height = this.canvas.width * (0.5625);
-    
+    if (window.innerWidth > 1000) {
+      this.canvas.width = window.innerWidth * (3 / 5) - 20;
+      this.canvas.height = this.canvas.width * (0.5625);
+    } else {
+      this.canvas.width = window.innerWidth - 20 - 64;
+      this.canvas.height = this.canvas.width * (0.5625);
+    }
+    document.documentElement.style.setProperty('--canvasHeight', this.canvas.height + 'px');
     let room = this.groupMan.rooms.find((room) => room.id == this.currentRoomId);
 
     if (room?.whiteboard) {

@@ -6,8 +6,8 @@
 
     <!-- Loginbit -->
     <div *ngIf="isLoginState()">
-      <input #username placeholder="Username" required/>
-      <input #password placeholder="Password" type="password" required>
+      <input #username placeholder="Username" required />
+      <input type="password" #password placeholder="Password" required />
       <button mat-flat-button color="warn" (click)="Login(username.value, password.value)">Login</button>
 
     </div>
@@ -15,23 +15,23 @@
     <!-- Register bit -->
     <div *ngIf="isRegisterState()">
       <input #username placeholder="Username" required />
-      <input #email placeholder="Email: youremail@example.com" type="email" required />
-      <input #password placeholder="Password" type="password" required />
+      <input #email placeholder="Email" required />
+      <input type="password" #password placeholder="Password" required />
       <button mat-flat-button color="warn"
         (click)="Signup(username.value, email.value, password.value)">Register</button>
     </div>
 
     <!-- Forgot Password bit -->
     <div *ngIf="isForgotPasswordState()">
-      <input #email placeholder="Email" type="email" required />
+      <input #email placeholder="Email" required />
       <button mat-flat-button color="warn">Reset</button>
     </div>
 
 
     <mat-card-actions align="end">
-      <button (click)="onForgotPasswordClick()" mat-flat-button>Forgot Password</button>
-      <button (click)="onCreateAccountClick()" mat-flat-button>Create an Account</button>
-      <button (click)="onLoginClick()" mat-flat-button>Login</button>
+      <button class="account-button" (click)="onForgotPasswordClick()" mat-flat-button>Forgot Password</button>
+      <button class="account-button" (click)="onCreateAccountClick()" mat-flat-button>Create an Account</button>
+      <button class="account-button" (click)="onLoginClick()" mat-flat-button>Login</button>
     </mat-card-actions>
   </mat-card>
 </div>

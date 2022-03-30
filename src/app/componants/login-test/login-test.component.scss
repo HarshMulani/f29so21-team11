@@ -13,7 +13,7 @@
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 100%;
-  min-height: 1000px;
+  min-height: 1100px;
 }
 
 #landing-left {
@@ -58,5 +58,6 @@
 // }
 #get-started {
   padding-right: 2em;
+  padding-top: 1em;
   // right: 1em;
 }

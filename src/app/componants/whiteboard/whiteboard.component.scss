@@ -1,0 +1,112 @@
+.grid {
+  --canvasHeight: 0px;
+  height: max-content;
+  overflow-x: hidden;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: [a] 1fr [b] 1fr [c] 1fr [d] 1fr [e] 1fr [f] 1fr [g] 1fr [h] 1fr [i] 1fr [j] 1fr [k];
+  grid-template-rows: [a] auto [b] auto [c];
+
+}
+
+.canvas-holder {
+  grid-column: 1 / 7;
+  grid-row: 1 / 2;
+  border: 5px solid #000;
+  background-color: #fff;
+  padding: 0;
+}
+
+.whiteboard-tools {
+  grid-column: 1 / 7;
+  grid-row: 2 / 3;
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-template-rows: 1fr;
+  padding-top: 1em;
+  outline: 5px solid #000;
+  margin-left: 5px;
+  margin-right: -7.5px;
+}
+
+.size {
+  grid-column: 3 / 4;
+  grid-row: 1 / 2;
+}
+
+.color {
+  grid-column: 4 / 5;
+  grid-row: 1 / 2;
+}
+
+
+.chat {
+  grid-column: 8 / 11;
+  grid-row: 1 / 2;
+  width: auto;
+  height: auto;
+  background-color: var(--cbgc);
+  border: 5px solid #000;
+}
+
+#chat {
+  grid-column: 8 / 11;
+  grid-row: 1 / 2;
+  width: auto;
+  height: 100%;
+  background-color: var(--cbgc);
+  border: 5px solid #000;
+}
+
+@media screen and (max-width: 1000px) {
+  .grid {
+    --canvasHeight: ;
+    height: max-content;
+    overflow-x: hidden;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 10px 1fr 10px;
+    grid-template-rows: [a] auto [b] 200px [c] auto [d];
+
+  }
+
+  .canvas-holder {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+    border: 1px solid #000;
+    background-color: #fff;
+    padding: 0;
+  }
+
+  .whiteboard-tools {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    display: grid;
+    grid-template-columns: subgrid;
+    grid-template-rows: 100px 100px;
+    padding-top: 1em;
+    outline: 5px solid #000;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .size {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+  }
+
+  .color {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+  }
+
+  .chat {
+    grid-column: 2 / 3;
+    grid-row: 3 / 4;
+    width: auto;
+    height: 500px;
+    background-color: var(--cbgc);
+    border: 5px solid #000;
+  }
+
+}

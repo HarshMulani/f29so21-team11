@@ -17,7 +17,6 @@
 
 button {
   margin: .5em;
-
 }
 
 input {
@@ -34,4 +33,10 @@ input {
 
 div {
   overflow: hidden;
+}
+
+@media screen and (max-width: 1000px) {
+  button {
+    white-space: normal;
+  }
 }

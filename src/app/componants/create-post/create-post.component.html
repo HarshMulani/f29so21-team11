@@ -1,0 +1,25 @@
+<mat-card style="overflow: hidden;">
+  <mat-card-header>
+    <mat-card-title>Create Post</mat-card-title>
+  </mat-card-header>
+
+  <div>
+    <textarea #commentInput placeholder="Insert Caption..."></textarea>
+  </div>
+
+  <div *ngIf="selectedImageFile" id="post-preview">
+    <img id="post-preview-image">
+  </div>
+
+
+  <mat-card-actions align="end">
+    <button mat-button color="warn">
+      <label for="photo-upload">
+        <input #photoSelector (change)="onPhotoSelected(photoSelector)" id="photo-upload" type="file" accept="image/*">
+        <mat-icon>add_photo_alternate</mat-icon>
+      </label>
+    </button>
+
+    <button (click)="onPostClick(commentInput.value)" mat-flat-button color="warn">Post</button>
+  </mat-card-actions>
+</mat-card>

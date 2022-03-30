@@ -19,6 +19,7 @@ import { GroupRoomComponent } from './componants/group-room/group-room.component
 import { GroupManagerService } from './services/group-manager/group-manager.service';
 import { WhiteboardManagerService } from './services/whiteboard-manager/whiteboard-manager.service';
 import { AccountComponent } from './componants/account/account.component';
+import { CreatePostComponent } from './componants/create-post/create-post.component'
 
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -32,10 +33,13 @@ import { LoginComponent } from './componants/login/login.component';
 import { LoginTestComponent } from './componants/login-test/login-test.component';
 import { UserSearchComponent } from './componants/user-search/user-search.component';
 import { UserPageComponent } from './componants/user-page/user-page.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatFileUploadModule } from 'angular-material-fileupload';
+import { MatDialogModule } from '@angular/material/dialog'
 
-const config: SocketIoConfig = { url: 'https://f29so-project.herokuapp.com', options: {} }
+// const config: SocketIoConfig = { url: 'https://f29so-project.herokuapp.com', options: {} }
 
-// const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} }
+const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} }
 
 @NgModule({
   declarations: [
@@ -51,7 +55,8 @@ const config: SocketIoConfig = { url: 'https://f29so-project.herokuapp.com', opt
     LoginComponent,
     LoginTestComponent,
     UserSearchComponent,
-    UserPageComponent
+    UserPageComponent,
+    CreatePostComponent
   ],
   imports: [
     BrowserModule,
@@ -64,7 +69,10 @@ const config: SocketIoConfig = { url: 'https://f29so-project.herokuapp.com', opt
     MatButtonModule,
     MatBottomSheetModule,
     BrowserAnimationsModule,
-    OverlayModule
+    OverlayModule,
+    MatIconModule,
+    MatFileUploadModule,
+    MatDialogModule
   ],
   providers: [SocketManagerService, RoomManagerService, AccountManagerService, GroupManagerService, WhiteboardManagerService],
   bootstrap: [AppComponent]

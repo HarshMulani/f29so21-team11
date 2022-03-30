@@ -7,6 +7,19 @@
 //   --bgc: beige;
 // }
 
+.grid {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: 100%;
+  background: rgb(33, 51, 152);
+  background: linear-gradient(90deg, rgba(33, 51, 152, 1) 0%, rgba(235, 63, 66, 1) 100%);
+}
+
+.title {
+  grid-column: 2 / 3;
+}
+
 a {
   text-decoration: none;
   color: black;
@@ -22,11 +35,12 @@ a {
 }
 
 .navigation {
+  grid-column: 4 / 8;
   position: relative;
   width: 100%;
   height: 50px;
-  background: rgb(33, 51, 152);
-  background: linear-gradient(90deg, rgba(33, 51, 152, 1) 0%, rgba(235, 63, 66, 1) 100%);
+  // background: rgb(33, 51, 152);
+  // background: linear-gradient(90deg, rgba(33, 51, 152, 1) 0%, rgba(235, 63, 66, 1) 100%);
   display: flex;
   justify-content: center;
   align-items: center;

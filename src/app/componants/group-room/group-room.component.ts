@@ -17,6 +17,10 @@ export class GroupRoomComponent implements OnInit {
 
   isOpen = false;
 
+  get inRoom() {
+    return (this.router.url.split('/')[2]) ? true: false;
+  }
+
   get rooms(): Array<WhiteBoardRoom> {
     return this.groupMan.rooms;
   }

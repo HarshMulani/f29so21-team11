@@ -1,28 +1,29 @@
-<!-- <router-outlet></router-outlet> -->
 <div class="to-hide">
   <div class="main">
-    <div>
-      <input type="file" id="image">
-      <button (click)="Upload()">Upload</button>
-    </div>
-    <div>
-      <button (click)="Read()" style="position: relative; top: 10px; width: 40px; height: 40px;">
-        <img src="https://unpkg.com/ionicons@5.5.2/dist/svg/reload-outline.svg">
-      </button>
-    </div>
-    <div class="list">
-      <ul *ngFor="let p of pictures">
-        <mat-card>
-          <!-- <li class="item"> -->
-          <!-- <img src={{p.img}} style="border: 1px solid black;" /> -->
-          <img mat-card-image src={{p.img}} style="border: 1px solid black;">
-          <div class="caption">
-            <p>Uploaded by: {{ p.uploader }}</p>
-            <p>{{ p.caption }}</p>
-          </div>
-          <!-- </li> -->
+    <div class="list-pos">
+      <ul class="list" *ngFor="let p of pictures">
+        <mat-card class="upload">
+          <mat-card-header>
+            <mat-card-title>{{ p.uploader }}</mat-card-title>
+            <mat-card-subtitle>{{ p.caption }}</mat-card-subtitle>
+          </mat-card-header>
+
+          <mat-card-content>
+            <img src={{p.img}} class="image">
+          </mat-card-content>
+
+
+          <mat-card-actions>
+            <mat-icon class="action-item" color="warn">chat_bubble_outline</mat-icon>
+            <mat-icon class="action-item" color="warn">favorite_border</mat-icon>
+            <mat-icon class="action-item" color="warn">save</mat-icon>
+          </mat-card-actions>
         </mat-card>
       </ul>
     </div>
   </div>
 </div>
+
+<button (click)="Upload()" mat-fab color="warn" class="post-button">
+  <mat-icon>add</mat-icon>
+</button>

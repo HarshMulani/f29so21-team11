@@ -9,7 +9,7 @@
   <div class="list">
     <ul *ngFor="let r of selectedRooms">
       <li>
-        <div style="display: grid; grid-auto-flow: column;" (click)="selectRoom(r.id)">
+        <div style="display: grid; grid-auto-flow: column;  padding-left: 1em;" (click)="selectRoom(r.id)">
           <div>Group: {{r.name}}</div>
         </div>
       </li>

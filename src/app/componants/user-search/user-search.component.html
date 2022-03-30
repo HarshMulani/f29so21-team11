@@ -1,13 +1,11 @@
 <div class="to-hide">
   <div class="grid">
-    <div class="search-bar">
-      <mat-card>
-        <label>Search: </label>
-        <input type="text" class="search" id="search-box" (keyup)="search()">
-        <button (click)="search()">Search</button>
-      </mat-card>
-    </div>
-    <div *ngIf="user">
+    <mat-card class="search-bar">
+      <label class="search-text">Search: </label>
+      <input type="text" class="search" id="search-box" (keyup)="search()">
+      <button class="search-button" (click)="search()">Search</button>
+    </mat-card>
+    <div *ngIf="user" class="profile-pos">
       <router-outlet></router-outlet>
     </div>
   </div>

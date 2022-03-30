@@ -1,23 +1,22 @@
-<div id="grid" style="
-height: max-content;
-     overflow-x: hidden; 
-     display: grid; 
-     gap: 10px; 
-     grid-template-columns: [a] 1fr [b] 1fr [c] 1fr [d] 1fr [e] 1fr [f] 1fr [g] 1fr [h] 1fr [i] 1fr [j] 1fr [k];
-     grid-template-rows: [a] auto [b] auto [c];
-     ">
-  <canvas id="Canvas" style="grid-column: 1 / 7; grid-row: 1 / 2; border: 5px solid #000; background-color: #fff;">
-  </canvas>
-  <div style="grid-column: 2 / 3; grid-row: 2 / 3;">
-    <h4>Draw size</h4>
-    <br>
-    <input type="range" min="1" max="100" value="50" class="slider" id="drawSize">
+<div class="grid">
+  <mat-card class="canvas-holder">
+    <canvas id="Canvas">
+    </canvas>
+  </mat-card>
+  <div class="whiteboard-tools">
+    <div class="size">
+      <h4>Draw size</h4>
+      <br>
+      <input type="range" min="1" max="100" value="50" class="slider" id="drawSize">
+    </div>
+    <div class="color">
+      <h4>Color</h4>
+      <input type="color" class="slider" id="colorPick" value="#000000">
+    </div>
   </div>
-  <div style="grid-column: 3 / 4; grid-row: 2 / 3;">
-    <h4>Color</h4>
-    <input type="color" class="slider" id="colorPick" value="#000000">
-  </div>
-  <app-chat-window
-    style="grid-column: 7 / 10; grid-row: 1 / 2; width: auto; height: auto; background-color: var(--cbgc);">
+  <app-chat-window class="chat">
   </app-chat-window>
 </div>
+
+<!-- this.canvas.width = window.innerWidth * (3 / 5) - 20;
+this.canvas.height = this.canvas.width * (0.5625);-->

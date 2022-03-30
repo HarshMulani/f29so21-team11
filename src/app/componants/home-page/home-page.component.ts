@@ -1,6 +1,8 @@
 import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { windowWhen } from 'rxjs';
 import { SocketManagerService } from 'src/app/services/socket-manager/socket-manager.service';
+import { CreatePostComponent } from '../create-post/create-post.component';
 
 @Component({
   selector: 'app-home-page',
@@ -13,7 +15,7 @@ export class HomePageComponent implements OnInit, AfterViewInit, OnDestroy {
 
   events: any = {};
 
-  constructor(private socketMan: SocketManagerService) { }
+  constructor(private socketMan: SocketManagerService, private dialog: MatDialog) { }
 
   ngOnDestroy(): void {
     document.removeEventListener('scroll', this.events['scroll'], false)
@@ -53,7 +55,7 @@ export class HomePageComponent implements OnInit, AfterViewInit, OnDestroy {
           img.onload = () => {
             let can = document.createElement('canvas') as HTMLCanvasElement;
             
-              if (window.innerWidth < 500) {
+              if (window.innerWidth <= 1000) {
                 console.log("making small")
                 can.setAttribute('width', (window.innerWidth - 10).toString())
                 can.setAttribute('height', (window.innerWidth - 10).toString())
@@ -78,24 +80,28 @@ export class HomePageComponent implements OnInit, AfterViewInit, OnDestroy {
       }
     })
     let id = setInterval(() => {
-      this.Read()
+      if(window.scrollY==0){
+        this.Read()
+      }
     }, 10000);
   }
 
   Upload () {
-    let reader = new FileReader();
-    let input = document.getElementById('image') as HTMLInputElement;
-    let file = input.files![0];
+    this.dialog.open(CreatePostComponent);
+    document.getElementsByClassName('to-hide')[0].scrollTo(0, 0)
+    // let reader = new FileReader();
+    // let input = document.getElementById('image') as HTMLInputElement;
+    // let file = input.files![0];
 
-    let cap = prompt("Add Caption", "caption")
+    // let cap = prompt("Add Caption", "caption")
 
-    reader.addEventListener('load', (e) => {
-      console.log("adding 1 to posts")
-      this.socketMan.emitEvent('create-image', {img: reader.result, owner: localStorage.getItem('login-token'), caption: cap, uploader: localStorage.getItem('login-token')});
-      this.socketMan.emitEvent('update-user-stats', {name: localStorage.getItem('login-token'), stat: 'posts'})
-      console.log(reader.result)
-    })
-    reader.readAsDataURL(file);
+    // reader.addEventListener('load', (e) => {
+    //   console.log("adding 1 to posts")
+    //   this.socketMan.emitEvent('create-image', {img: reader.result, owner: localStorage.getItem('login-token'), caption: cap, uploader: localStorage.getItem('login-token')});
+    //   this.socketMan.emitEvent('update-user-stats', {name: localStorage.getItem('login-token'), stat: 'posts'})
+    //   console.log(reader.result)
+    // })
+    // reader.readAsDataURL(file);
   }
 
   Read() {

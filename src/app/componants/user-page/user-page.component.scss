@@ -7,13 +7,9 @@ body {
 
 .header {
   min-height: 60vh;
-  //   background: #009FFF;
-  //   background-color: var(--bgc);
-  //   background: linear-gradient(to right, #ec2F4B, #009FFF);
   color: black;
   clip-path: ellipse(100vw 60vh at 50% 50%);
   display: flex;
-  //   align-items: center;
   justify-content: center;
   transition: 0.5s;
 }
@@ -34,6 +30,7 @@ body {
 
 .profile {
   width: 1000px;
+  max-width: 100vw;
   height: 750px;
   grid-row: 2 / 3;
   grid-column: 2 / 3;
@@ -59,6 +56,11 @@ body {
   width: 30px;
   height: 30px;
   z-index: inherit;
+}
+
+.list-pos {
+  position: fixed;
+  top: 275px;
 }
 
 .list {
@@ -117,4 +119,130 @@ li {
   font-weight: 400;
   font-size: 1.3rem;
   margin: 1rem 0;
+}
+
+@media screen and (max-width: 1000px) {
+
+  body {
+    margin: 0;
+    font-family: 'Lato', sans-serif;
+  }
+
+  .header {
+    min-height: 60vh;
+    color: black;
+    clip-path: ellipse(100vw 60vh at 50% 50%);
+    display: flex;
+    justify-content: center;
+    transition: 0.5s;
+  }
+
+  .details {
+    text-align: center;
+    top: 150px;
+    position: relative;
+    max-width: 100vw;
+  }
+
+  .grid {
+    display: grid;
+    width: 100%;
+    height: 80vh;
+    grid-template-columns: 1fr auto 1fr;
+    grid-template-rows: 100px auto;
+  }
+
+  .profile {
+    width: auto;
+    height: 750px;
+    grid-row: 2 / 3;
+    grid-column: 2 / 3;
+    background-color: grey;
+    position: relative;
+    border-radius: 50px 50px 50px 50px;
+    box-shadow: inset 0 0 10px #000000;
+  }
+
+  .kebab {
+    position: relative;
+    left: 90%;
+    top: 20px;
+    width: 10%;
+    height: 30px;
+    z-index: 1;
+    border: none;
+    background: none;
+    outline: 0
+  }
+
+  .kebab img {
+    width: 30px;
+    height: 30px;
+    z-index: inherit;
+  }
+
+
+  .list-pos {
+    position: fixed;
+    top: 275px;
+  }
+
+  .list {
+    width: 100px;
+  }
+
+  li {
+    list-style: none;
+  }
+
+  .logout {
+    position: relative;
+    display: block;
+    right: 50px;
+    width: 100px;
+    height: 30px;
+    z-index: 1;
+  }
+
+
+  .bio-button {
+    position: relative;
+    display: block;
+    right: 50px;
+    width: 100px;
+    height: 30px;
+    z-index: 1;
+  }
+
+  .profile-pic {
+    height: 6rem;
+    width: 6rem;
+    object-fit: center;
+    border-radius: 50%;
+    border: 2px solid #fff;
+  }
+
+  .location p {
+    display: inline-block;
+  }
+
+  .location svg {
+    vertical-align: middle;
+  }
+
+  .stats {
+    display: flex;
+  }
+
+  .stats .col-4 {
+    width: 10rem;
+    text-align: center;
+  }
+
+  .heading {
+    font-weight: 400;
+    font-size: 1.3rem;
+    margin: 1rem 0;
+  }
+
 }

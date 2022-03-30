@@ -9,6 +9,10 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
+  uMatcher = /^[a-zA-Z0-9][a-zA-Z0-9_]{2,29}$/
+  eMatcher = /^(\D)+(\w)*((\.(\w)+)?)+@(\D)+(\w)*((\.(\D)+(\w)*)+)?(\.)[a-z]{2,}$/
+  pMatcher = /^([a-zA-Z0-9@*#]{8,15})$/
+
   state = AuthenticatorCompState.LOGIN;
   constructor(private accountMan: AccountManagerService, private router: Router) { }
 
@@ -20,7 +24,19 @@ export class LoginComponent implements OnInit {
   }
 
   Signup(user: string, email: string, password: string) {
-    this.accountMan.signup(user, password, email);
+    if (user.match(this.uMatcher)) {
+      if (email.match(this.eMatcher)) {
+        if (password.match(this.pMatcher)) {
+          this.accountMan.signup(user, password, email);
+        } else {
+          alert("Password doesn't work")
+        }
+      } else {
+        alert("Email doesn't work")
+      }
+    } else {
+      alert("Username doesn't work")
+    }
   }
 
 
