@@ -37,9 +37,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFileUploadModule } from 'angular-material-fileupload';
 import { MatDialogModule } from '@angular/material/dialog'
 
-// const config: SocketIoConfig = { url: 'https://f29so-project.herokuapp.com', options: {} }
+const config: SocketIoConfig = { url: 'https://f29so-project.herokuapp.com', options: {} }
 
-const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} }
+// const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} }
 
 @NgModule({
   declarations: [
