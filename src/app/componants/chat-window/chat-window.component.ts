@@ -18,6 +18,8 @@ export class ChatWindowComponent implements OnInit, OnDestroy {
 
   subscribed: { [key: string]: boolean } = {};
 
+  regName = /^[a-zA-Z0-9_!]{2,20}$/
+
   constructor(private router: Router, private roomMan: RoomManagerService, private groupMan: GroupManagerService, private socketMan: SocketManagerService) { }
   ngOnDestroy(): void {
     // this.historyService.messages = [];
@@ -64,14 +66,18 @@ export class ChatWindowComponent implements OnInit, OnDestroy {
   }
 
   changeRoomName() {
-    let newName = prompt("Enter new room name")
+    let newName = prompt("Enter new room name")!
     let room = this.room
-    room.name = newName!
-    this.socketMan.emitEvent('update-room', room)
-    let group = this.groupMan.rooms.find(group => group.id == this.currentRoomId)
-    if (group) {
-      group.name = newName!
-      this.socketMan.emitEvent('update-group-room', group)
+    if (newName?.match(this.regName)) {
+      room.name = newName!
+      this.socketMan.emitEvent('update-room', room)
+      let group = this.groupMan.rooms.find(group => group.id == this.currentRoomId)
+      if (group) {
+        group.name = newName!
+        this.socketMan.emitEvent('update-group-room', group)
+      }
+    } else {
+      alert("Name not valid, please try again!")
     }
   }
 }

@@ -13,6 +13,7 @@ import { ChatWindowComponent } from '../chat-window/chat-window.component';
 })
 export class RoomListComponent implements OnInit, AfterViewInit {
 
+  regName = /^[a-zA-Z0-9_!]{2,20}$/
   constructor(private socketMan: SocketManagerService, private roomMan: RoomManagerService, private router: Router, private activeRoute: ActivatedRoute) { }
 
   selectedRooms: Array<Room> = [];
@@ -31,9 +32,11 @@ export class RoomListComponent implements OnInit, AfterViewInit {
   // }
 
   createRoom() {
-    let name = prompt("Enter the room name", "name");
-    if (name != null) {
+    let name = prompt("Enter the room name", "name")!;
+    if (name.match(this.regName)) {
       this.roomMan.createRoom(name);
+    } else {
+      alert("Name not valid, please try again!")
     }
     setTimeout(() => {
       this.search();

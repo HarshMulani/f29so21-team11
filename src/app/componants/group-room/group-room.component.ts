@@ -16,6 +16,7 @@ import { SocketManagerService } from 'src/app/services/socket-manager/socket-man
 export class GroupRoomComponent implements OnInit {
 
   isOpen = false;
+  regName = /^[a-zA-Z0-9_!]{2,20}$/
 
   get inRoom() {
     return (this.router.url.split('/')[2]) ? true: false;
@@ -28,9 +29,11 @@ export class GroupRoomComponent implements OnInit {
   constructor(private socketMan: SocketManagerService, private groupMan: GroupManagerService, private router: Router, private activeRoute: ActivatedRoute, private roomMan: RoomManagerService) { }
 
   createRoom() {
-    let name = prompt("Enter the room name", "name");
-    if (name != null) {
+    let name = prompt("Enter the room name", "name")!;
+    if (name.match(this.regName)) {
       this.groupMan.createRoom(name);
+    } else {
+      alert("Name not valid, please try again!")
     }
   }
 
